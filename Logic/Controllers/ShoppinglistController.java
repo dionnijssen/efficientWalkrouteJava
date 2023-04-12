@@ -40,6 +40,10 @@ public class ShoppinglistController {
         ArrayList shoppinglistOptions = new ArrayList<>();
         ArrayList<Shoppinglist> shoppinglists = this.get();
 
+        if (shoppinglists.size() == 0) {
+            throw new RuntimeException("No shoppinglists found");
+        }
+
         int count = 1;
         for (Shoppinglist shoppinglist : shoppinglists) {
             System.out.println(count + " " + shoppinglist.date);
@@ -48,6 +52,7 @@ public class ShoppinglistController {
         }
 
         String selected = Helpers.readOption(shoppinglistOptions);
+
         Shoppinglist selectedShoppinglist = this.show(Integer.parseInt(selected));
 
         return selectedShoppinglist;

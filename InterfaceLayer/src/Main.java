@@ -67,7 +67,16 @@ public class Main {
     public void selectShoppinglist() throws IOException, ParseException {
         System.out.println("");
         System.out.println("Select a shoppinglist:");
-        Shoppinglist selectedShopppingList = this.controllerFactory.getShoppinglistController().selectShoppingList();
+
+        Shoppinglist selectedShopppingList = null;
+
+        try {
+            selectedShopppingList = this.controllerFactory.getShoppinglistController().selectShoppingList();
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            start();
+        }
+
 
         shoppingListOptions(selectedShopppingList);
     }
@@ -76,14 +85,13 @@ public class Main {
         System.out.println("");
         System.out.println("Shoppinglist actions:");
         System.out.println("1. Create order");
-        System.out.println("2. Order actions");
-        System.out.println("3. Create Walkroute");
+        System.out.println("2. TODO?: Order actions");
+        System.out.println("3. TODO: Create Walkroute");
 
         ArrayList<String> options = new ArrayList<String>();
         options.add("1");
         options.add("2");
         options.add("3");
-        options.add("4");
 
         String option = Helpers.readOption(options);
 
