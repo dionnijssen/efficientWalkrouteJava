@@ -12,7 +12,7 @@ public class OrderruleController {
         orderruleRepo = orderruleRepository;
     }
 
-    public Orderrule show(int id){
+    public Orderrule show(int id) {
         return this.orderruleRepo.show(id);
     }
 
@@ -29,7 +29,7 @@ public class OrderruleController {
         return this.orderruleRepo.update(orderrule);
     }
 
-    public boolean delete (Orderrule orderrule) {
+    public boolean delete(Orderrule orderrule) {
         return this.orderruleRepo.delete(orderrule);
     }
 }

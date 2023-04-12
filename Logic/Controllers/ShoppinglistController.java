@@ -2,7 +2,6 @@ package Logic.Controllers;
 
 import DataLayer.ShoppinglistRepository;
 import Logic.Helpers.Helpers;
-import Logic.Interfaces.ShoppinglistInterface;
 import Logic.Models.Order;
 import Logic.Models.Shoppinglist;
 import Logic.Models.WalkRoute;
@@ -11,13 +10,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static java.lang.System.exit;
-
 public class ShoppinglistController {
 
     ShoppinglistRepository shoppinglistRepo;
 
-    public ShoppinglistController(ShoppinglistRepository shoppinglistRepository){
+    public ShoppinglistController(ShoppinglistRepository shoppinglistRepository) {
         shoppinglistRepo = shoppinglistRepository;
     }
 
@@ -58,11 +55,11 @@ public class ShoppinglistController {
         return selectedShoppinglist;
     }
 
-    public Shoppinglist show(int id){
+    public Shoppinglist show(int id) {
         return this.shoppinglistRepo.show(id);
     }
 
-    public ArrayList<Shoppinglist> get(){
+    public ArrayList<Shoppinglist> get() {
         return this.shoppinglistRepo.get();
     }
 
@@ -76,7 +73,7 @@ public class ShoppinglistController {
         LocalDate today = LocalDate.now();
 
         for (int i = 0; i < shoppinglists.size(); i++) {
-            if ((shoppinglists.get(i)).date == today){
+            if ((shoppinglists.get(i)).date == today) {
                 return null;
             }
         }

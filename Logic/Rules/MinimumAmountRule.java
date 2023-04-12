@@ -3,36 +3,31 @@ package Logic.Rules;
 import Logic.Models.Article;
 import Logic.Models.Shoppinglist;
 
-public class MinimumAmountRule extends BasicRule{
+public class MinimumAmountRule extends BasicRule {
     public MinimumAmountRule(Shoppinglist shoppingList, Article article, int amount) {
         super(shoppingList, article, amount);
     }
 
-    private void apply()
-    {
+    private void apply() {
 //        if (this.amount < this.settings.get("min")) {
 //            this.amount = this.settings.get("min");
 //            this.applied = true;
 //        }
     }
 
-    public int priority()
-    {
+    public int priority() {
         return 1;
     }
 
-    public int getAmount()
-    {
+    public int getAmount() {
         return this.amount;
     }
 
-    public boolean hasBeenApplied()
-    {
+    public boolean hasBeenApplied() {
         return this.applied;
     }
 
-    public String getReason()
-    {
+    public String getReason() {
         return "";
     }
 

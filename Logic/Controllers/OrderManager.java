@@ -11,8 +11,6 @@ import Logic.Models.Shoppinglist;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static java.lang.System.exit;
-
 public class OrderManager {
 
     private ShoppinglistRepository shoppinglistRepository;
@@ -83,14 +81,14 @@ public class OrderManager {
 //            orderrules.add(orderrule);
 //            order.orderrules = orderrules;
 //        } else {
-            order.orderrules.add(orderrule);
+        order.orderrules.add(orderrule);
 //        }
 
         return order;
     }
 
     public boolean storeOrder(Shoppinglist shoppinglist, Order order) {
-        try{
+        try {
             for (Shoppinglist list : this.shoppinglistRepository.get()) {
                 if (list.id == shoppinglist.id) {
                     if (shoppinglist.orders == null) {
@@ -104,14 +102,12 @@ public class OrderManager {
             }
 
             return true;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
 
-    public Shoppinglist addOrderToShoppingList(Shoppinglist shoppinglist, Order order)
-    {
+    public Shoppinglist addOrderToShoppingList(Shoppinglist shoppinglist, Order order) {
         shoppinglist.orders.add(order);
         Shoppinglist updatedShoppingList = this.shoppinglistRepository.update(shoppinglist);
 

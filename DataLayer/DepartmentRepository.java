@@ -1,6 +1,5 @@
 package DataLayer;
 
-import Logic.Models.Article;
 import Logic.Models.Department;
 
 import java.util.ArrayList;

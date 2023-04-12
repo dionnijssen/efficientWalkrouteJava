@@ -6,18 +6,19 @@ import java.util.ArrayList;
 
 public class UserRepository {
     private ArrayList<User> users;
+
     public UserRepository() {
         ArrayList<User> users = new ArrayList<User>();
     }
 
-    public ArrayList<User> get(){
+    public ArrayList<User> get() {
         return this.users;
     }
 
-    public User show(int userId){
+    public User show(int userId) {
         ArrayList<User> users = this.get();
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).id == userId){
+            if (users.get(i).id == userId) {
                 return users.get(i);
             }
         }
@@ -28,9 +29,9 @@ public class UserRepository {
         return this.users.add(user);
     }
 
-    public boolean update(User user){
+    public boolean update(User user) {
         for (int i = 0; i < this.users.size(); i++) {
-            if (users.get(i).id == user.id){
+            if (users.get(i).id == user.id) {
                 users.set(i, user);
                 return true;
             }
@@ -38,7 +39,7 @@ public class UserRepository {
         return false;
     }
 
-    public boolean delete(User user){
+    public boolean delete(User user) {
         return this.users.remove(user);
     }
 }

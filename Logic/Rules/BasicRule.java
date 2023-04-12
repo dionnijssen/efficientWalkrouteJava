@@ -11,8 +11,7 @@ abstract class BasicRule {
     protected int amount;
     protected boolean applied;
 
-    public BasicRule(Shoppinglist shoppingList, Article article, int amount)
-    {
+    public BasicRule(Shoppinglist shoppingList, Article article, int amount) {
         this.shoppingList = shoppingList;
         this.article = article;
         this.amount = amount;
@@ -22,38 +21,31 @@ abstract class BasicRule {
         this.apply();
     }
 
-    private void apply()
-    {
+    private void apply() {
 
     }
 
-    public int priority()
-    {
+    public int priority() {
         return 1;
     }
 
-    public int getAmount()
-    {
+    public int getAmount() {
         return this.amount;
     }
 
-    public boolean hasBeenApplied()
-    {
+    public boolean hasBeenApplied() {
         return this.applied;
     }
 
-    public String getReason()
-    {
+    public String getReason() {
         return "";
     }
 
-    private void setOptions()
-    {
+    private void setOptions() {
 //        this.options = ;
     }
 
-    public ArrayList getOptions()
-    {
+    public ArrayList getOptions() {
 //        return this.options;
         return new ArrayList();
     }

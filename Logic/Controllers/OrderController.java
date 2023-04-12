@@ -1,11 +1,9 @@
 package Logic.Controllers;
 
 import DataLayer.OrderRepository;
-import Logic.Helpers.Helpers;
 import Logic.Interfaces.OrderControllerInterface;
 import Logic.Models.Order;
 import Logic.Models.Orderrule;
-import Logic.Models.Shoppinglist;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,7 +1,5 @@
 package Logic.Models;
 
-import java.util.ArrayList;
-
 public class Article {
     public int id;
     public String name;

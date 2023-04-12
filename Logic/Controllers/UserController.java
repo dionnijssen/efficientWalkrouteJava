@@ -5,13 +5,13 @@ import Logic.Models.User;
 
 public class UserController {
 
-     UserRepository userRepo;
+    UserRepository userRepo;
 
-    public UserController(UserRepository userRepository){
+    public UserController(UserRepository userRepository) {
         userRepo = userRepository;
     }
 
-    public User show(int id){
+    public User show(int id) {
         return this.userRepo.show(id);
     }
 
@@ -23,7 +23,7 @@ public class UserController {
         return this.userRepo.update(user);
     }
 
-    public boolean delete (User user) {
+    public boolean delete(User user) {
         return this.userRepo.delete(user);
     }
 

@@ -5,7 +5,7 @@ import Logic.Models.Orderrule;
 import java.util.ArrayList;
 
 public class OrderruleRepository {
-    private ArrayList<Orderrule> orderrules;
+    private final ArrayList<Orderrule> orderrules;
 
     public OrderruleRepository() {
         this.orderrules = new ArrayList<Orderrule>();

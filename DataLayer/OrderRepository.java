@@ -2,13 +2,12 @@ package DataLayer;
 
 import DataLayer.Interfaces.RepositoryInterface;
 import Logic.Models.Order;
-import Logic.Models.Orderrule;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class OrderRepository implements RepositoryInterface<Order> {
-    private ArrayList<Order> orders;
+    private final ArrayList<Order> orders;
+
     public OrderRepository() {
         this.orders = new ArrayList<Order>();
 
@@ -41,8 +40,8 @@ public class OrderRepository implements RepositoryInterface<Order> {
         return this.orders;
     }
 
-    public Order show(int id){
-        for (Order order :  (get())) {
+    public Order show(int id) {
+        for (Order order : (get())) {
             if (order.id == id) {
                 return order;
             }
@@ -57,7 +56,7 @@ public class OrderRepository implements RepositoryInterface<Order> {
         return order;
     }
 
-    public Order update(Order order){
+    public Order update(Order order) {
         for (int i = 0; i < this.orders.size(); i++) {
             if (this.orders.get(i).id == order.id) {
                 this.orders.set(i, order);
@@ -68,7 +67,7 @@ public class OrderRepository implements RepositoryInterface<Order> {
         return null;
     }
 
-    public boolean delete(Order order){
+    public boolean delete(Order order) {
         for (int i = 0; i < this.orders.size(); i++) {
             if (this.orders.get(i).id == order.id) {
                 this.orders.remove(i);

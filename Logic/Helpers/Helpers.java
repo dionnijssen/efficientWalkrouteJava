@@ -12,20 +12,21 @@ import java.util.Random;
 public class Helpers {
 
     public static String readLine() throws IOException {
-        while(true){
+        while (true) {
             System.out.print(">");
             String line = (new BufferedReader(new InputStreamReader(System.in))).readLine();
-            if(line.equals("")){
+            if (line.equals("")) {
                 System.out.println("Input can't be empty");
                 continue;
             }
             return line;
         }
     }
+
     public static int readInt() throws IOException {
-        while(true){
+        while (true) {
             String sOption = Helpers.readLine();
-            if(!isInt(sOption)){
+            if (!isInt(sOption)) {
                 System.out.println("Invalid option");
                 System.out.print(">");
                 continue;
@@ -33,26 +34,28 @@ public class Helpers {
             return Integer.parseInt(sOption);
         }
     }
+
     public static LocalDate readDate() throws IOException {
-        while(true){
+        while (true) {
             String option = Helpers.readLine();
-            if(!isDate(option)){
+            if (!isDate(option)) {
                 System.out.println("Invalid date");
                 continue;
             }
             return LocalDate.parse(option);
         }
     }
+
     public static LocalDate readUpcominDate() throws IOException {
-        while(true){
+        while (true) {
             String option = Helpers.readLine();
-            if(!isDate(option)){
+            if (!isDate(option)) {
                 System.out.println("Invalid date");
                 continue;
             }
             LocalDate date = LocalDate.parse(option);
 
-            if(date.isBefore(LocalDate.now())){
+            if (date.isBefore(LocalDate.now())) {
                 System.out.println("can't use date from the past");
                 continue;
             }
@@ -60,31 +63,34 @@ public class Helpers {
             return date;
         }
     }
+
     public static LocalTime readTime() throws IOException {
-        while(true){
+        while (true) {
             String option = Helpers.readLine();
-            if(!isTime(option)){
+            if (!isTime(option)) {
                 System.out.println("Invalid time");
                 continue;
             }
             return LocalTime.parse(option);
         }
     }
+
     public static double readDouble() throws IOException {
-        while(true){
+        while (true) {
             String sOption = Helpers.readLine();
-            if(!isNumeric(sOption)){
+            if (!isNumeric(sOption)) {
                 System.out.println("Invalid option");
                 continue;
             }
             return Double.parseDouble(sOption);
         }
     }
+
     public static String readOption(ArrayList<String> array) throws IOException {
-        while(true){
+        while (true) {
             String option = Helpers.readLine();
-            for(String opt : array){
-                if(opt.equals(option)){
+            for (String opt : array) {
+                if (opt.equals(option)) {
                     return option;
                 }
             }
@@ -93,11 +99,10 @@ public class Helpers {
     }
 
 
-
-    public static String hash(String string){
+    public static String hash(String string) {
         String hash = "";
 
-        try{
+        try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(string.getBytes());
             byte[] bytes = md.digest();
@@ -107,12 +112,10 @@ public class Helpers {
                 sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
             }
             return sb.toString();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return hash;
         }
     }
-
 
 
     public static boolean isInt(String strNum) {
@@ -143,28 +146,27 @@ public class Helpers {
         try {
             LocalDate date = LocalDate.parse(str);
             return true;
-        }
-        catch (Exception e) {
-            return false;
-        }
-    }
-    public static boolean isTime(String str) {
-        try {
-            LocalTime time = LocalTime.parse(str);
-            return true;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
 
-    public static String randomString(int length){
+    public static boolean isTime(String str) {
+        try {
+            LocalTime time = LocalTime.parse(str);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static String randomString(int length) {
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
 
-        for(int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++) {
 
             int index = random.nextInt(alphabet.length());
             char randomChar = alphabet.charAt(index);

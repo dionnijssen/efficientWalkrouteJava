@@ -6,11 +6,11 @@ import Logic.Models.WalkRoute;
 public class WalkRouteController {
     WalkRouteRepository walkRouteRepo;
 
-    public WalkRouteController(WalkRouteRepository walkRouteRepository){
+    public WalkRouteController(WalkRouteRepository walkRouteRepository) {
         walkRouteRepo = walkRouteRepository;
     }
 
-    public WalkRoute show(int id){
+    public WalkRoute show(int id) {
         return this.walkRouteRepo.show(id);
     }
 

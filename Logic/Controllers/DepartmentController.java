@@ -1,7 +1,6 @@
 package Logic.Controllers;
 
 import DataLayer.DepartmentRepository;
-import Logic.Models.Department;
 
 public class DepartmentController {
     DepartmentRepository departmentRepo;

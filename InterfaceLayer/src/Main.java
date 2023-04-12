@@ -1,14 +1,10 @@
 package InterfaceLayer.src;
 
-import DataLayer.*;
 import Logic.ControllerFactory;
-import Logic.Controllers.*;
 import Logic.Helpers.Helpers;
 import Logic.Models.Order;
-import Logic.Models.Orderrule;
 import Logic.Models.Shoppinglist;
 import Logic.RepositoryFactory;
-import Logic.Models.Article;
 
 import java.io.IOException;
 import java.text.ParseException;

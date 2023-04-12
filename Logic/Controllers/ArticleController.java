@@ -10,14 +10,14 @@ public class ArticleController {
     ArticleRepository articleRepo;
 
     public ArticleController(ArticleRepository articleRepository) {
-        this.articleRepo =  articleRepository;
+        this.articleRepo = articleRepository;
     }
 
-    public ArrayList<Article> get(){
+    public ArrayList<Article> get() {
         return this.articleRepo.get();
     }
 
-    public Article show(int id){
+    public Article show(int id) {
         return this.articleRepo.show(id);
     }
 
@@ -32,7 +32,7 @@ public class ArticleController {
         return null;
     }
 
-    public boolean delete (Article article) {
+    public boolean delete(Article article) {
         return this.articleRepo.delete(article);
     }
 }
