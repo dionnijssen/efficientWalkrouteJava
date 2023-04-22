@@ -65,7 +65,11 @@ public class ShoppinglistController implements ShoppinglistControllerInterface {
     }
 
     public Boolean store(Shoppinglist shoppinglist) {
-        return this.shoppinglistRepo.store(shoppinglist);
+        if (this.shoppinglistRepo.store(shoppinglist) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private Shoppinglist createShoppingList(LocalDate date, ArrayList<Order> orders, WalkRoute walkRoute) {

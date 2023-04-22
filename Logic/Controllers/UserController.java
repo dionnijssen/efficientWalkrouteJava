@@ -17,11 +17,21 @@ public class UserController implements UserControllerInterface {
     }
 
     public boolean create(User user) {
-        return this.userRepo.create(user);
+        if (this.userRepo.store(user) != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public boolean update(User user) {
-        return this.userRepo.update(user);
+        if (this.userRepo.update(user) != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public boolean delete(User user) {

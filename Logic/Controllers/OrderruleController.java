@@ -23,7 +23,7 @@ public class OrderruleController implements OrderruleControllerInterface {
                 amount
         );
 
-        return this.orderruleRepo.create(newOrderrule);
+        return this.orderruleRepo.store(newOrderrule);
     }
 
     public Orderrule update(Orderrule orderrule) {

@@ -1,10 +1,11 @@
 package DataLayer;
 
+import DataLayer.Interfaces.RepositoryInterface;
 import Logic.Models.Shoppinglist;
 
 import java.util.ArrayList;
 
-public class ShoppinglistRepository {
+public class ShoppinglistRepository implements RepositoryInterface<Shoppinglist> {
 
     private ArrayList<Shoppinglist> shoppinglists;
 
@@ -26,9 +27,10 @@ public class ShoppinglistRepository {
         return null;
     }
 
-    //TODO: implement
-    public Boolean store(Shoppinglist shoppinglist) {
-        return this.shoppinglists.add(shoppinglist);
+    public Shoppinglist store(Shoppinglist shoppinglist) {
+        this.shoppinglists.add(shoppinglist);
+
+        return shoppinglist;
     }
 
     public Shoppinglist update(Shoppinglist shoppinglist) {

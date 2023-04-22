@@ -1,10 +1,11 @@
 package DataLayer;
 
+import DataLayer.Interfaces.RepositoryInterface;
 import Logic.Models.Department;
 
 import java.util.ArrayList;
 
-public class DepartmentRepository {
+public class DepartmentRepository implements RepositoryInterface<Department> {
     private ArrayList<Department> departments;
     public DepartmentRepository() {
         this.departments = new ArrayList<Department>();
@@ -51,20 +52,21 @@ public class DepartmentRepository {
         return null;
     }
 
-    public boolean create(Department department){
-        return this.departments.add(department);
+    public Department store(Department department){
+        this.departments.add(department);
+        return department;
     }
 
-    public boolean update(Department department){
+    public Department update(Department department){
         for (int i = 0; i < this.departments.size(); i++) {
             if (departments.get(i).id == department.id){
                 departments.set(i, department);
 
-                return true;
+                return department;
             }
         }
 
-        return false;
+        return null;
     }
 
     public boolean delete(Department department){
