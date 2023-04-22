@@ -1,12 +1,12 @@
 package Logic;
 
-import DataLayer.OrderRepository;
 import Logic.Controllers.*;
+import Logic.Interfaces.ControllerFactoryInterface;
 
 // Het enige wat deze class doet is weten hoe de objecten gemaakt moeten worden. FactoryPattern -> opzoeken en snappen. -> opzoeken hoe het in Laravel zit
 // Dit concept heb je bij de meeste OOP opgezette projecten. Bij Laravel word dit oa gedaan met de AppServiceProvider.
 // Opzoeken Inversion of control (IOC)
-public class ControllerFactory {
+public class ControllerFactory implements ControllerFactoryInterface {
     private RepositoryFactory repositoryFactory;
     private ArticleController articleController;
     private DepartmentController departmentController;
