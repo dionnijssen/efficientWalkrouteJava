@@ -50,7 +50,7 @@ public class OrderRepository implements RepositoryInterface<Order> {
         return null;
     }
 
-    public Order create(Order order) {
+    public Order store(Order order) {
         this.orders.add(order);
 
         return order;

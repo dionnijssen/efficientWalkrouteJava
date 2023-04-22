@@ -1,6 +1,6 @@
 package DataLayer;
 
-import DataLayer.Interfaces.ArticleRepositoryInterface;
+import DataLayer.Interfaces.RepositoryInterface;
 import Logic.Models.Article;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
     Bij een method als dependency de controller?
     En dan bij aanroepen method de factory gebruiken om die dependency aan te maken?
  */
-public class ArticleRepository implements ArticleRepositoryInterface<Article> {
+public class ArticleRepository implements RepositoryInterface<Article> {
     private ArrayList<Article> articles;
 
     public ArticleRepository() {
@@ -61,20 +61,21 @@ public class ArticleRepository implements ArticleRepositoryInterface<Article> {
         return null;
     }
 
-    public boolean create(Article article) {
-        return this.articles.add(article);
+    public Article store(Article article) {
+        this.articles.add(article);
+        return article;
     }
 
-    public boolean update(Article article){
+    public Article update(Article article){
         for (int i = 0; i < this.articles.size(); i++) {
             if (articles.get(i).id == article.id){
                 articles.set(i, article);
 
-                return true;
+                return article;
             }
         }
 
-        return false;
+        return null;
     }
 
     public boolean delete(Article article){

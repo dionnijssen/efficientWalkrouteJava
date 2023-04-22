@@ -1,10 +1,11 @@
 package DataLayer;
 
+import DataLayer.Interfaces.RepositoryInterface;
 import Logic.Models.Orderrule;
 
 import java.util.ArrayList;
 
-public class OrderruleRepository {
+public class OrderruleRepository implements RepositoryInterface<Orderrule> {
     private final ArrayList<Orderrule> orderrules;
 
     public OrderruleRepository() {
@@ -25,7 +26,7 @@ public class OrderruleRepository {
         return null;
     }
 
-    public Orderrule create(Orderrule orderrule) {
+    public Orderrule store(Orderrule orderrule) {
         this.orderrules.add(orderrule);
 
         return orderrule;

@@ -1,10 +1,11 @@
 package DataLayer;
 
+import DataLayer.Interfaces.RepositoryInterface;
 import Logic.Models.User;
 
 import java.util.ArrayList;
 
-public class UserRepository {
+public class UserRepository implements RepositoryInterface<User> {
     private ArrayList<User> users;
 
     public UserRepository() {
@@ -25,18 +26,19 @@ public class UserRepository {
         return null;
     }
 
-    public boolean create(User user) {
-        return this.users.add(user);
+    public User store(User user) {
+        this.users.add(user);
+        return user;
     }
 
-    public boolean update(User user) {
+    public User update(User user) {
         for (int i = 0; i < this.users.size(); i++) {
             if (users.get(i).id == user.id) {
                 users.set(i, user);
-                return true;
+                return user;
             }
         }
-        return false;
+        return null;
     }
 
     public boolean delete(User user) {

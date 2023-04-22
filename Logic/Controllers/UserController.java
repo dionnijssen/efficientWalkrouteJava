@@ -1,9 +1,10 @@
 package Logic.Controllers;
 
 import DataLayer.UserRepository;
+import Logic.Interfaces.UserControllerInterface;
 import Logic.Models.User;
 
-public class UserController {
+public class UserController implements UserControllerInterface {
 
     UserRepository userRepo;
 
@@ -16,11 +17,21 @@ public class UserController {
     }
 
     public boolean create(User user) {
-        return this.userRepo.create(user);
+        if (this.userRepo.store(user) != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public boolean update(User user) {
-        return this.userRepo.update(user);
+        if (this.userRepo.update(user) != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public boolean delete(User user) {

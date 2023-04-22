@@ -22,24 +22,4 @@ public class OrderController implements OrderControllerInterface {
                 new ArrayList<Orderrule>()
         );
     }
-
-//    public Order create(Shoppinglist shoppinglist) {
-//        int id = ((this.orderRepo.get()).size() + 1);
-//        ArrayList<Orderrule> orderrules = new ArrayList<Orderrule>();
-//
-//        Order order = new Order(
-//                id,
-//                shoppinglist.date,
-//                orderrules
-//        );
-//
-//        //TODO: implement
-//        order = this.orderRepo.create(order);
-//
-//        return order;
-//    }
-
-    public boolean delete(Order order) {
-        return false;
-    }
 }

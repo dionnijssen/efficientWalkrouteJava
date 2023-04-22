@@ -3,6 +3,7 @@ package Logic.Controllers;
 import DataLayer.ArticleRepository;
 import DataLayer.ShoppinglistRepository;
 import Logic.Helpers.Helpers;
+import Logic.Interfaces.OrderManagerInterface;
 import Logic.Models.Article;
 import Logic.Models.Order;
 import Logic.Models.Orderrule;
@@ -11,7 +12,7 @@ import Logic.Models.Shoppinglist;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class OrderManager {
+public class OrderManager implements OrderManagerInterface {
 
     private ShoppinglistRepository shoppinglistRepository;
     private ArticleRepository articleRepository;

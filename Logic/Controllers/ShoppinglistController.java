@@ -2,6 +2,7 @@ package Logic.Controllers;
 
 import DataLayer.ShoppinglistRepository;
 import Logic.Helpers.Helpers;
+import Logic.Interfaces.ShoppinglistControllerInterface;
 import Logic.Models.Order;
 import Logic.Models.Shoppinglist;
 import Logic.Models.WalkRoute;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class ShoppinglistController {
+public class ShoppinglistController implements ShoppinglistControllerInterface {
 
     ShoppinglistRepository shoppinglistRepo;
 
@@ -19,7 +20,7 @@ public class ShoppinglistController {
     }
 
     public void create() {
-        System.out.println("");
+        System.out.println();
 
         LocalDate today = LocalDate.now();
 
@@ -64,7 +65,11 @@ public class ShoppinglistController {
     }
 
     public Boolean store(Shoppinglist shoppinglist) {
-        return this.shoppinglistRepo.store(shoppinglist);
+        if (this.shoppinglistRepo.store(shoppinglist) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private Shoppinglist createShoppingList(LocalDate date, ArrayList<Order> orders, WalkRoute walkRoute) {

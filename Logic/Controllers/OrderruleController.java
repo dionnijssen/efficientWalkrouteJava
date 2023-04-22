@@ -1,10 +1,11 @@
 package Logic.Controllers;
 
 import DataLayer.OrderruleRepository;
+import Logic.Interfaces.OrderruleControllerInterface;
 import Logic.Models.Article;
 import Logic.Models.Orderrule;
 
-public class OrderruleController {
+public class OrderruleController implements OrderruleControllerInterface {
 
     OrderruleRepository orderruleRepo;
 
@@ -22,7 +23,7 @@ public class OrderruleController {
                 amount
         );
 
-        return this.orderruleRepo.create(newOrderrule);
+        return this.orderruleRepo.store(newOrderrule);
     }
 
     public Orderrule update(Orderrule orderrule) {

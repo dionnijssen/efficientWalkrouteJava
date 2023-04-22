@@ -10,7 +10,12 @@ import java.util.ArrayList;
  */
 public interface RepositoryInterface<Model> {
     public ArrayList<Model> get();
-    /*
 
-     */
+    public Model show(int id);
+
+    public Model store(Model model);
+
+    public Model update(Model model);
+
+    public boolean delete(Model model);
 }
