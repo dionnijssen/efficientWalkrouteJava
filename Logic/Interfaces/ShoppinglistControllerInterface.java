@@ -5,7 +5,7 @@ import Logic.Models.Shoppinglist;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public interface ShoppinglistInterface {
+public interface ShoppinglistControllerInterface {
     void create();
 
     Shoppinglist selectShoppingList() throws IOException;

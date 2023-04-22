@@ -1,13 +1,13 @@
 package Logic.Controllers;
 
 import DataLayer.ArticleRepository;
-import Logic.Interfaces.ArticleInterface;
+import Logic.Interfaces.ArticleControllerInterface;
 import Logic.Models.Article;
 
 import java.util.ArrayList;
 
 
-public class ArticleController implements ArticleInterface {
+public class ArticleController implements ArticleControllerInterface {
     ArticleRepository articleRepo;
 
     public ArticleController(ArticleRepository articleRepository) {

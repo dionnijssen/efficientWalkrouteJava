@@ -1,9 +1,9 @@
 package Logic.Controllers;
 
 import DataLayer.DepartmentRepository;
-import Logic.Interfaces.DepartmentInterface;
+import Logic.Interfaces.DepartmentControllerInterface;
 
-public class DepartmentController implements DepartmentInterface {
+public class DepartmentController implements DepartmentControllerInterface {
     DepartmentRepository departmentRepo;
 
     public DepartmentController(DepartmentRepository departmentRepository) {

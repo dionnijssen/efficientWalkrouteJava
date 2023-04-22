@@ -2,6 +2,6 @@ package Logic.Interfaces;
 
 import Logic.Models.WalkRoute;
 
-public interface WalkRouteInterface {
+public interface WalkRouteControllerInterface {
     WalkRoute show(int id);
 }

@@ -4,7 +4,7 @@ import Logic.Models.Article;
 
 import java.util.ArrayList;
 
-public interface ArticleInterface {
+public interface ArticleControllerInterface {
     ArrayList<Article> get();
 
     Article show(int id);

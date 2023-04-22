@@ -2,7 +2,7 @@ package Logic.Interfaces;
 
 import Logic.Models.User;
 
-public interface UserInterface {
+public interface UserControllerInterface {
     User show(int id);
 
     boolean create(User user);

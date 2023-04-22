@@ -1,10 +1,10 @@
 package Logic.Controllers;
 
 import DataLayer.WalkRouteRepository;
-import Logic.Interfaces.WalkRouteInterface;
+import Logic.Interfaces.WalkRouteControllerInterface;
 import Logic.Models.WalkRoute;
 
-public class WalkRouteController implements WalkRouteInterface {
+public class WalkRouteController implements WalkRouteControllerInterface {
     WalkRouteRepository walkRouteRepo;
 
     public WalkRouteController(WalkRouteRepository walkRouteRepository) {
