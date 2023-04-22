@@ -1,13 +1,12 @@
 package Logic.Controllers;
 
 import DataLayer.DepartmentRepository;
+import Logic.Interfaces.DepartmentInterface;
 
-public class DepartmentController {
+public class DepartmentController implements DepartmentInterface {
     DepartmentRepository departmentRepo;
 
     public DepartmentController(DepartmentRepository departmentRepository) {
         this.departmentRepo = departmentRepository;
     }
-
-    //Maybe a setOrder method is required.
 }

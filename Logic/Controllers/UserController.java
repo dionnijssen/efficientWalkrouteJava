@@ -1,9 +1,10 @@
 package Logic.Controllers;
 
 import DataLayer.UserRepository;
+import Logic.Interfaces.UserInterface;
 import Logic.Models.User;
 
-public class UserController {
+public class UserController implements UserInterface {
 
     UserRepository userRepo;
 

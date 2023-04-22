@@ -1,10 +1,11 @@
 package Logic.Controllers;
 
 import DataLayer.OrderruleRepository;
+import Logic.Interfaces.OrderruleInterface;
 import Logic.Models.Article;
 import Logic.Models.Orderrule;
 
-public class OrderruleController {
+public class OrderruleController implements OrderruleInterface {
 
     OrderruleRepository orderruleRepo;
 

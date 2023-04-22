@@ -1,4 +1,4 @@
 package Logic.Interfaces;
 
-public interface DepartmentInterface extends CrudInterface{
+public interface DepartmentInterface {
 }

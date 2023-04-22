@@ -40,6 +40,7 @@ public class ControllerFactory {
 
         return this.departmentController;
     }
+
     public OrderController getOrderController()
     {
         if (null == this.orderController) {

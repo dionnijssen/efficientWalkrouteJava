@@ -1,4 +1,7 @@
 package Logic.Interfaces;
 
-public interface WalkRouteInterface extends CrudInterface{
+import Logic.Models.WalkRoute;
+
+public interface WalkRouteInterface {
+    WalkRoute show(int id);
 }
