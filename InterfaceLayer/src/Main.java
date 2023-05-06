@@ -1,8 +1,8 @@
-package InterfaceLayer.src;
-
 import Logic.ControllerFactory;
 import Logic.Helpers.Helpers;
+import Logic.Models.Article;
 import Logic.Models.Order;
+import Logic.Models.Orderrule;
 import Logic.Models.Shoppinglist;
 import Logic.RepositoryFactory;
 
@@ -55,8 +55,15 @@ public class Main {
     }
 
     public void createShoppingList() throws IOException, ParseException {
-        this.controllerFactory.getShoppinglistController().create();
+        Boolean success = this.controllerFactory.getShoppinglistController().create();
 
+        if (success) {
+            System.out.println("Shoppinglist created");
+        } else {
+            System.out.println("Something went wrong, please try again");
+
+            throw new RuntimeException("Something went wrong, please try again");
+        }
         start();
     }
 
@@ -64,17 +71,33 @@ public class Main {
         System.out.println("");
         System.out.println("Select a shoppinglist:");
 
-        Shoppinglist selectedShopppingList = null;
+        Shoppinglist selectedShoppinglist = null;
 
         try {
-            selectedShopppingList = this.controllerFactory.getShoppinglistController().selectShoppingList();
+            ArrayList shoppinglistOptions = new ArrayList<>();
+            ArrayList<Shoppinglist> shoppinglists = this.controllerFactory.getShoppinglistController().get();
+
+            if (shoppinglists.size() == 0) {
+                throw new RuntimeException("No shoppinglists found");
+            }
+
+            int count = 1;
+            for (Shoppinglist shoppinglist : shoppinglists) {
+                System.out.println(count + " " + shoppinglist.date);
+                shoppinglistOptions.add(Integer.toString(shoppinglist.id));
+                count++;
+            }
+
+            String selected = Helpers.readOption(shoppinglistOptions);
+
+            selectedShoppinglist = this.controllerFactory.getShoppinglistController().show(Integer.parseInt(selected));
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             start();
         }
 
 
-        shoppingListOptions(selectedShopppingList);
+        shoppingListOptions(selectedShoppinglist);
     }
 
     public void shoppingListOptions(Shoppinglist shoppinglist) throws IOException, ParseException {
@@ -104,7 +127,7 @@ public class Main {
         // Add articles to order
         System.out.println("");
         System.out.println("Choose articles to add to order.");
-        Order updatedOrder = this.controllerFactory.getOrderManager().addArticlesToOrder(order);
+        Order updatedOrder = this.addArticlesToOrder(order);
 
         // Add order to shoppinglist
         System.out.println("");
@@ -117,6 +140,60 @@ public class Main {
 
         // Back to shoppinglist Options
         shoppingListOptions(updatedShoppingList);
+    }
+
+    private Order addArticlesToOrder(Order order) throws IOException {
+        ArrayList articleOptions = new ArrayList();
+        boolean firstTime = true;
+        boolean again = true;
+        Order updatedOrder = null;
+
+        do {
+            for (Article article : this.controllerFactory.getArticleController().get()) {
+                if (firstTime) {
+                    articleOptions.add(Integer.toString(article.id));
+                }
+                System.out.println(article.id + ". " + article.name + " , " + article.description);
+            }
+
+            String select = Helpers.readOption(articleOptions);
+            Article article = this.controllerFactory.getArticleController().show(Integer.parseInt(select));
+
+            System.out.println("Amount?");
+            int amount = Helpers.readInt();
+
+            Orderrule orderrule = new Orderrule(article, amount);
+
+            updatedOrder = this.controllerFactory.getOrderManager().addToOrder(order, orderrule);
+
+            System.out.println("");
+            System.out.println("Current articles:");
+
+            for (Orderrule rule : updatedOrder.orderrules) {
+                System.out.println(rule.article.name + ", " + rule.amount);
+            }
+            System.out.println("");
+
+            System.out.println("Select action:");
+            System.out.println("1. Add another article");
+            System.out.println("2. Submit Order");
+
+            ArrayList addAnotherArticle = new ArrayList<>();
+
+            addAnotherArticle.add("1");
+            addAnotherArticle.add("2");
+
+            String option = Helpers.readOption(addAnotherArticle);
+
+            firstTime = false;
+
+            switch (Integer.parseInt(option)) {
+                case 1 -> again = true;
+                case 2 -> again = false;
+            }
+        } while (again);
+
+        return updatedOrder;
     }
 
     //TODO: Tests

@@ -1,13 +1,11 @@
 package Logic.Controllers;
 
 import DataLayer.ShoppinglistRepository;
-import Logic.Helpers.Helpers;
 import Logic.Interfaces.ShoppinglistControllerInterface;
 import Logic.Models.Order;
 import Logic.Models.Shoppinglist;
 import Logic.Models.WalkRoute;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -19,41 +17,13 @@ public class ShoppinglistController implements ShoppinglistControllerInterface {
         shoppinglistRepo = shoppinglistRepository;
     }
 
-    public void create() {
+    public Boolean create() {
         System.out.println();
 
         LocalDate today = LocalDate.now();
 
         Shoppinglist newShoppinglist = this.createShoppingList(today, new ArrayList<Order>(), null);
-        if (this.store(newShoppinglist)) {
-            System.out.println("Shoppinglist created");
-        } else {
-            System.out.println("Something went wrong, please try again");
-
-            throw new RuntimeException("Something went wrong, please try again");
-        }
-    }
-
-    public Shoppinglist selectShoppingList() throws IOException {
-        ArrayList shoppinglistOptions = new ArrayList<>();
-        ArrayList<Shoppinglist> shoppinglists = this.get();
-
-        if (shoppinglists.size() == 0) {
-            throw new RuntimeException("No shoppinglists found");
-        }
-
-        int count = 1;
-        for (Shoppinglist shoppinglist : shoppinglists) {
-            System.out.println(count + " " + shoppinglist.date);
-            shoppinglistOptions.add(Integer.toString(shoppinglist.id));
-            count++;
-        }
-
-        String selected = Helpers.readOption(shoppinglistOptions);
-
-        Shoppinglist selectedShoppinglist = this.show(Integer.parseInt(selected));
-
-        return selectedShoppinglist;
+        return this.store(newShoppinglist);
     }
 
     public Shoppinglist show(int id) {
