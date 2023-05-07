@@ -10,5 +10,7 @@ public interface OrderManagerInterface {
 
     boolean storeOrder(Shoppinglist shoppinglist, Order order);
 
+    Shoppinglist addOrderToShoppingList(Shoppinglist shoppinglist, Order order);
+
     boolean removeFromOrder(Order order, Article article, int amount);
 }

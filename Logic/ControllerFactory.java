@@ -1,21 +1,21 @@
 package Logic;
 
 import Logic.Controllers.*;
-import Logic.Interfaces.ControllerFactoryInterface;
+import Logic.Interfaces.*;
 
 // Het enige wat deze class doet is weten hoe de objecten gemaakt moeten worden. FactoryPattern -> opzoeken en snappen. -> opzoeken hoe het in Laravel zit
 // Dit concept heb je bij de meeste OOP opgezette projecten. Bij Laravel word dit oa gedaan met de AppServiceProvider.
 // Opzoeken Inversion of control (IOC)
 public class ControllerFactory implements ControllerFactoryInterface {
     private RepositoryFactory repositoryFactory;
-    private ArticleController articleController;
-    private DepartmentController departmentController;
-    private OrderManager orderManager;
-    private OrderController orderController;
-    private OrderruleController orderruleController;
-    private ShoppinglistController shoppinglistController;
-    private UserController userController;
-    private WalkRouteController walkRouteController;
+    private ArticleControllerInterface articleController;
+    private DepartmentControllerInterface departmentController;
+    private OrderManagerInterface orderManager;
+    private OrderControllerInterface orderController;
+    private OrderruleControllerInterface orderruleController;
+    private ShoppinglistControllerInterface shoppinglistController;
+    private UserControllerInterface userController;
+    private WalkRouteControllerInterface walkRouteController;
 
     public ControllerFactory(
             RepositoryFactory repositoryFactory
@@ -23,8 +23,7 @@ public class ControllerFactory implements ControllerFactoryInterface {
         this.repositoryFactory = repositoryFactory;
     }
 
-    public ArticleController getArticleController()
-    {
+    public ArticleControllerInterface getArticleController() {
         if (null == this.articleController) {
             this.articleController = new ArticleController(this.repositoryFactory.getArticleRepository());
         }
@@ -32,8 +31,7 @@ public class ControllerFactory implements ControllerFactoryInterface {
         return this.articleController;
     }
 
-    public DepartmentController getDepartmentController()
-    {
+    public DepartmentControllerInterface getDepartmentController() {
         if (null == this.departmentController) {
             this.departmentController = new DepartmentController(this.repositoryFactory.getDepartmentRepository());
         }
@@ -41,8 +39,7 @@ public class ControllerFactory implements ControllerFactoryInterface {
         return this.departmentController;
     }
 
-    public OrderController getOrderController()
-    {
+    public OrderControllerInterface getOrderController() {
         if (null == this.orderController) {
             this.orderController = new OrderController(this.repositoryFactory.getOrderRepository());
         }
@@ -50,8 +47,7 @@ public class ControllerFactory implements ControllerFactoryInterface {
         return this.orderController;
     }
 
-    public OrderruleController getOrderruleController()
-    {
+    public OrderruleControllerInterface getOrderruleController() {
         if (null == this.orderruleController) {
             this.orderruleController = new OrderruleController(this.repositoryFactory.getOrderruleRepository());
         }
@@ -59,8 +55,7 @@ public class ControllerFactory implements ControllerFactoryInterface {
         return this.orderruleController;
     }
 
-    public ShoppinglistController getShoppinglistController()
-    {
+    public ShoppinglistControllerInterface getShoppinglistController() {
         if (null == this.shoppinglistController) {
             this.shoppinglistController = new ShoppinglistController(this.repositoryFactory.getShoppinglistRepository());
         }
@@ -68,8 +63,7 @@ public class ControllerFactory implements ControllerFactoryInterface {
         return this.shoppinglistController;
     }
 
-    public UserController getUserController()
-    {
+    public UserControllerInterface getUserController() {
         if (null == this.userController) {
             this.userController = new UserController(this.repositoryFactory.getUserRepository());
         }
@@ -77,8 +71,7 @@ public class ControllerFactory implements ControllerFactoryInterface {
         return this.userController;
     }
 
-    public WalkRouteController getWalkRouteController()
-    {
+    public WalkRouteControllerInterface getWalkRouteController() {
         if (null == this.walkRouteController) {
             this.walkRouteController = new WalkRouteController(this.repositoryFactory.getWalkRouteRepository());
         }
@@ -86,8 +79,7 @@ public class ControllerFactory implements ControllerFactoryInterface {
         return this.walkRouteController;
     }
 
-    public OrderManager getOrderManager()
-    {
+    public OrderManagerInterface getOrderManager() {
         if (null == this.orderManager) {
             this.orderManager = new OrderManager(
                     this.repositoryFactory.getShoppinglistRepository(),

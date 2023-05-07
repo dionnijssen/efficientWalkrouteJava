@@ -3,19 +3,19 @@ package Logic.Interfaces;
 import Logic.Controllers.*;
 
 public interface ControllerFactoryInterface {
-    ArticleController getArticleController();
+    ArticleControllerInterface getArticleController();
 
-    DepartmentController getDepartmentController();
+    DepartmentControllerInterface getDepartmentController();
 
-    OrderController getOrderController();
+    OrderControllerInterface getOrderController();
 
-    OrderruleController getOrderruleController();
+    OrderruleControllerInterface getOrderruleController();
 
-    ShoppinglistController getShoppinglistController();
+    ShoppinglistControllerInterface getShoppinglistController();
 
-    UserController getUserController();
+    UserControllerInterface getUserController();
 
-    WalkRouteController getWalkRouteController();
+    WalkRouteControllerInterface getWalkRouteController();
 
-    OrderManager getOrderManager();
+    OrderManagerInterface getOrderManager();
 }
