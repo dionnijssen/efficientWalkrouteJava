@@ -14,7 +14,6 @@ public class ControllerFactory implements ControllerFactoryInterface {
     private OrderControllerInterface orderController;
     private OrderruleControllerInterface orderruleController;
     private ShoppinglistControllerInterface shoppinglistController;
-    private UserControllerInterface userController;
     private WalkRouteControllerInterface walkRouteController;
 
     public ControllerFactory(
@@ -61,14 +60,6 @@ public class ControllerFactory implements ControllerFactoryInterface {
         }
 
         return this.shoppinglistController;
-    }
-
-    public UserControllerInterface getUserController() {
-        if (null == this.userController) {
-            this.userController = new UserController(this.repositoryFactory.getUserRepository());
-        }
-
-        return this.userController;
     }
 
     public WalkRouteControllerInterface getWalkRouteController() {

@@ -26,7 +26,7 @@ public class OrderManager implements OrderManagerInterface {
 //            orderrules.add(orderrule);
 //            order.orderrules = orderrules;
 //        } else {
-        order.orderrules.add(orderrule);
+        order.getOrderrules().add(orderrule);
 //        }
 
         return order;
@@ -35,14 +35,8 @@ public class OrderManager implements OrderManagerInterface {
     public boolean storeOrder(Shoppinglist shoppinglist, Order order) {
         try {
             for (Shoppinglist list : this.shoppinglistRepository.get()) {
-                if (list.id == shoppinglist.id) {
-                    if (shoppinglist.orders == null) {
-                        ArrayList<Order> orders = new ArrayList<Order>();
-                        orders.add(order);
-                        shoppinglist.orders = orders;
-                    } else {
-                        shoppinglist.orders.add(order);
-                    }
+                if (list.getId() == shoppinglist.getId()) {
+                    shoppinglist.addOrder(order);
                 }
             }
 
@@ -53,13 +47,7 @@ public class OrderManager implements OrderManagerInterface {
     }
 
     public Shoppinglist addOrderToShoppingList(Shoppinglist shoppinglist, Order order) {
-        if (shoppinglist.orders == null) {
-            ArrayList<Order> orders = new ArrayList<Order>();
-            orders.add(order);
-            shoppinglist.orders = orders;
-        } else {
-            shoppinglist.orders.add(order);
-        }
+        shoppinglist.addOrder(order);
         Shoppinglist updatedShoppingList = this.shoppinglistRepository.update(shoppinglist);
 
         if (updatedShoppingList != null) {

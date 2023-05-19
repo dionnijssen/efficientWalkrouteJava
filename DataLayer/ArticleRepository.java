@@ -53,7 +53,7 @@ public class ArticleRepository implements RepositoryInterface<Article> {
         ArrayList<Article> articles = this.get();
 
         for (int i = 0; i < articles.size(); i++) {
-            if (articles.get(i).id == articleId){
+            if (articles.get(i).getId() == articleId){
                 return articles.get(i);
             }
         }
@@ -68,7 +68,7 @@ public class ArticleRepository implements RepositoryInterface<Article> {
 
     public Article update(Article article){
         for (int i = 0; i < this.articles.size(); i++) {
-            if (articles.get(i).id == article.id){
+            if (articles.get(i).getId() == article.getId()){
                 articles.set(i, article);
 
                 return article;
@@ -80,7 +80,7 @@ public class ArticleRepository implements RepositoryInterface<Article> {
 
     public boolean delete(Article article){
         for (int i = 0; i < this.articles.size(); i++) {
-            if (articles.get(i).id == article.id){
+            if (articles.get(i).getId() == article.getId()){
                 articles.remove(i);
 
                 return true;

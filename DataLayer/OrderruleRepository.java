@@ -18,7 +18,7 @@ public class OrderruleRepository implements RepositoryInterface<Orderrule> {
 
     public Orderrule show(int id) {
         for (Orderrule orderrule : this.get()) {
-            if (orderrule.id == id) {
+            if (orderrule.getId() == id) {
                 return orderrule;
             }
         }
@@ -34,7 +34,7 @@ public class OrderruleRepository implements RepositoryInterface<Orderrule> {
 
     public Orderrule update(Orderrule orderrule) {
         for (int i = 0; i < this.orderrules.size(); i++) {
-            if (this.orderrules.get(i).id == orderrule.id) {
+            if (this.orderrules.get(i).getId() == orderrule.getId()) {
                 this.orderrules.set(i, orderrule);
 
                 return orderrule;
@@ -46,7 +46,7 @@ public class OrderruleRepository implements RepositoryInterface<Orderrule> {
 
     public boolean delete(Orderrule orderrule) {
         for (int i = 0; i < this.orderrules.size(); i++) {
-            if (this.orderrules.get(i).id == orderrule.id) {
+            if (this.orderrules.get(i).getId() == orderrule.getId()) {
                 this.orderrules.remove(i);
 
                 return true;

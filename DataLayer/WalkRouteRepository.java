@@ -20,7 +20,7 @@ public class WalkRouteRepository implements RepositoryInterface<WalkRoute> {
         ArrayList<WalkRoute> walkRoutes = this.get();
 
         for (int i = 0; i < walkRoutes.size(); i++) {
-            if (walkRoutes.get(i).id == walkRouteId) {
+            if (walkRoutes.get(i).getId() == walkRouteId) {
                 return walkRoutes.get(i);
             }
         }
@@ -35,7 +35,7 @@ public class WalkRouteRepository implements RepositoryInterface<WalkRoute> {
 
     public WalkRoute update(WalkRoute walkRoute) {
         for (int i = 0; i < this.walkRoutes.size(); i++) {
-            if (walkRoutes.get(i).id == walkRoute.id) {
+            if (walkRoutes.get(i).getId() == walkRoute.getId()) {
                 walkRoutes.set(i, walkRoute);
 
                 return walkRoute;
@@ -47,7 +47,7 @@ public class WalkRouteRepository implements RepositoryInterface<WalkRoute> {
 
     public boolean delete(WalkRoute walkRoute) {
         for (int i = 0; i < this.walkRoutes.size(); i++) {
-            if (walkRoutes.get(i).id == walkRoute.id) {
+            if (walkRoutes.get(i).getId() == walkRoute.getId()) {
                 walkRoutes.remove(i);
 
                 return true;

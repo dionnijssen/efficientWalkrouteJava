@@ -83,8 +83,8 @@ public class Main {
 
             int count = 1;
             for (Shoppinglist shoppinglist : shoppinglists) {
-                System.out.println(count + " " + shoppinglist.date);
-                shoppinglistOptions.add(Integer.toString(shoppinglist.id));
+                System.out.println(count + " " + shoppinglist.getDate());
+                shoppinglistOptions.add(Integer.toString(shoppinglist.getId()));
                 count++;
             }
 
@@ -151,9 +151,9 @@ public class Main {
         do {
             for (Article article : this.controllerFactory.getArticleController().get()) {
                 if (firstTime) {
-                    articleOptions.add(Integer.toString(article.id));
+                    articleOptions.add(Integer.toString(article.getId()));
                 }
-                System.out.println(article.id + ". " + article.name + " , " + article.description);
+                System.out.println(article.getId() + ". " + article.getName() + " , " + article.getDescription());
             }
 
             String select = Helpers.readOption(articleOptions);
@@ -169,8 +169,8 @@ public class Main {
             System.out.println("");
             System.out.println("Current articles:");
 
-            for (Orderrule rule : updatedOrder.orderrules) {
-                System.out.println(rule.article.name + ", " + rule.amount);
+            for (Orderrule rule : updatedOrder.getOrderrules()) {
+                System.out.println(rule.getArticle().getName() + ", " + rule.getAmount());
             }
             System.out.println("");
 

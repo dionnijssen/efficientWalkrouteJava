@@ -42,7 +42,7 @@ public class OrderRepository implements RepositoryInterface<Order> {
 
     public Order show(int id) {
         for (Order order : (get())) {
-            if (order.id == id) {
+            if (order.getId() == id) {
                 return order;
             }
         }
@@ -58,7 +58,7 @@ public class OrderRepository implements RepositoryInterface<Order> {
 
     public Order update(Order order) {
         for (int i = 0; i < this.orders.size(); i++) {
-            if (this.orders.get(i).id == order.id) {
+            if (this.orders.get(i).getId() == order.getId()) {
                 this.orders.set(i, order);
                 return order;
             }
@@ -69,7 +69,7 @@ public class OrderRepository implements RepositoryInterface<Order> {
 
     public boolean delete(Order order) {
         for (int i = 0; i < this.orders.size(); i++) {
-            if (this.orders.get(i).id == order.id) {
+            if (this.orders.get(i).getId() == order.getId()) {
                 this.orders.remove(i);
                 return true;
             }

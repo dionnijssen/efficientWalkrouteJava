@@ -19,7 +19,7 @@ public class ShoppinglistRepository implements RepositoryInterface<Shoppinglist>
 
     public Shoppinglist show(int id) {
         for (Shoppinglist shoppinglist : (get())) {
-            if (shoppinglist.id == id) {
+            if (shoppinglist.getId() == id) {
                 return shoppinglist;
             }
         }
@@ -35,7 +35,7 @@ public class ShoppinglistRepository implements RepositoryInterface<Shoppinglist>
 
     public Shoppinglist update(Shoppinglist shoppinglist) {
         for (int i = 0; i < this.shoppinglists.size(); i++) {
-            if (shoppinglists.get(i).id == shoppinglist.id) {
+            if (shoppinglists.get(i).getId() == shoppinglist.getId()) {
                 shoppinglists.set(i, shoppinglist);
 
                 return shoppinglist;

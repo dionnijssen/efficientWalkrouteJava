@@ -13,7 +13,5 @@ public interface RepositoryFactoryInterface {
 
     ShoppinglistRepository getShoppinglistRepository();
 
-    UserRepository getUserRepository();
-
     WalkRouteRepository getWalkRouteRepository();
 }

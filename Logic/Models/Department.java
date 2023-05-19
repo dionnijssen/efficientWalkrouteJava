@@ -3,7 +3,7 @@ package Logic.Models;
 import java.util.ArrayList;
 
 public class Department {
-    public int id;
+    private int id;
     private String name;
     private int order;
     private ArrayList<Article> articles;
@@ -13,5 +13,9 @@ public class Department {
         this.name = name;
         this.order = order;
         this.articles = articles;
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

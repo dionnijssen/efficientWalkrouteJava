@@ -13,8 +13,6 @@ public interface ControllerFactoryInterface {
 
     ShoppinglistControllerInterface getShoppinglistController();
 
-    UserControllerInterface getUserController();
-
     WalkRouteControllerInterface getWalkRouteController();
 
     OrderManagerInterface getOrderManager();
