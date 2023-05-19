@@ -1,6 +1,6 @@
-package Logic.Interfaces;
+package Logic.Interfaces.Logic;
 
-import Logic.Controllers.*;
+import Logic.Interfaces.Logic.Controllers.*;
 
 public interface ControllerFactoryInterface {
     ArticleControllerInterface getArticleController();

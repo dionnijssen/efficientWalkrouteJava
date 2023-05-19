@@ -1,4 +1,4 @@
-package Logic.Interfaces;
+package Logic.Interfaces.Logic.Controllers;
 
 import Logic.Models.Article;
 

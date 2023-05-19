@@ -1,7 +1,8 @@
 package Logic;
 
 import Logic.Controllers.*;
-import Logic.Interfaces.*;
+import Logic.Interfaces.Logic.*;
+import Logic.Interfaces.Logic.Controllers.*;
 
 // Het enige wat deze class doet is weten hoe de objecten gemaakt moeten worden. FactoryPattern -> opzoeken en snappen. -> opzoeken hoe het in Laravel zit
 // Dit concept heb je bij de meeste OOP opgezette projecten. Bij Laravel word dit oa gedaan met de AppServiceProvider.

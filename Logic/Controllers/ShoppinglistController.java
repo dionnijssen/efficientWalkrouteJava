@@ -1,7 +1,7 @@
 package Logic.Controllers;
 
 import DataLayer.ShoppinglistRepository;
-import Logic.Interfaces.ShoppinglistControllerInterface;
+import Logic.Interfaces.Logic.Controllers.ShoppinglistControllerInterface;
 import Logic.Models.Order;
 import Logic.Models.Shoppinglist;
 import Logic.Models.WalkRoute;

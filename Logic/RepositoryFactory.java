@@ -1,7 +1,7 @@
 package Logic;
 
 import DataLayer.*;
-import Logic.Interfaces.RepositoryFactoryInterface;
+import Logic.Interfaces.Logic.RepositoryFactoryInterface;
 
 public class RepositoryFactory implements RepositoryFactoryInterface {
     private ArticleRepository articleRepository;

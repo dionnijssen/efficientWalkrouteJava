@@ -1,7 +1,7 @@
 package Logic.Controllers;
 
 import DataLayer.ArticleRepository;
-import Logic.Interfaces.ArticleControllerInterface;
+import Logic.Interfaces.Logic.Controllers.ArticleControllerInterface;
 import Logic.Models.Article;
 
 import java.util.ArrayList;

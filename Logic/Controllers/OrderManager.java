@@ -2,13 +2,11 @@ package Logic.Controllers;
 
 import DataLayer.ArticleRepository;
 import DataLayer.ShoppinglistRepository;
-import Logic.Interfaces.OrderManagerInterface;
+import Logic.Interfaces.Logic.Controllers.OrderManagerInterface;
 import Logic.Models.Article;
 import Logic.Models.Order;
 import Logic.Models.Orderrule;
 import Logic.Models.Shoppinglist;
-
-import java.util.ArrayList;
 
 public class OrderManager implements OrderManagerInterface {
 

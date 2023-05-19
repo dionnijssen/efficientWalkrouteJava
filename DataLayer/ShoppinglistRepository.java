@@ -1,6 +1,6 @@
 package DataLayer;
 
-import DataLayer.Interfaces.RepositoryInterface;
+import Logic.Interfaces.Data.RepositoryInterface;
 import Logic.Models.Shoppinglist;
 
 import java.util.ArrayList;
