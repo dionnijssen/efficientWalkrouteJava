@@ -1,7 +1,7 @@
 package Logic.Controllers;
 
 import DataLayer.DepartmentRepository;
-import Logic.Interfaces.DepartmentControllerInterface;
+import Logic.Interfaces.Logic.Controllers.DepartmentControllerInterface;
 
 public class DepartmentController implements DepartmentControllerInterface {
     DepartmentRepository departmentRepo;

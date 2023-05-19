@@ -1,4 +1,4 @@
-package DataLayer.Interfaces;
+package Logic.Interfaces.Data;
 
 import Logic.Models.Order;
 

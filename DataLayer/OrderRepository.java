@@ -1,6 +1,6 @@
 package DataLayer;
 
-import DataLayer.Interfaces.RepositoryInterface;
+import Logic.Interfaces.Data.RepositoryInterface;
 import Logic.Models.Order;
 
 import java.util.ArrayList;

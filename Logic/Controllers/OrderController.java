@@ -1,7 +1,7 @@
 package Logic.Controllers;
 
 import DataLayer.OrderRepository;
-import Logic.Interfaces.OrderControllerInterface;
+import Logic.Interfaces.Logic.Controllers.OrderControllerInterface;
 import Logic.Models.Order;
 import Logic.Models.Orderrule;
 
