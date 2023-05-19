@@ -9,7 +9,6 @@ public class RepositoryFactory implements RepositoryFactoryInterface {
     private OrderRepository orderRepository;
     private OrderruleRepository orderruleRepository;
     private ShoppinglistRepository shoppinglistRepository;
-    private UserRepository userRepository;
     private WalkRouteRepository walkRouteRepository;
 
     public ArticleRepository getArticleRepository()
@@ -55,15 +54,6 @@ public class RepositoryFactory implements RepositoryFactoryInterface {
         }
 
         return this.shoppinglistRepository;
-    }
-
-    public UserRepository getUserRepository()
-    {
-        if (null == this.userRepository) {
-            this.userRepository = new UserRepository();
-        }
-
-        return this.userRepository;
     }
 
     public WalkRouteRepository getWalkRouteRepository()

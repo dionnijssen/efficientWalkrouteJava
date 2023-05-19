@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Shoppinglist {
-    public int id;
+    private int id;
     //TODO: Check if this needs to be private
-    public LocalDate date;
-    public ArrayList<Order> orders;
+    private LocalDate date;
+    private ArrayList<Order> orders;
     private WalkRoute walkRoute;
 
     public Shoppinglist(int id, LocalDate date, ArrayList<Order> orders, WalkRoute walkRoute) {
@@ -15,5 +15,25 @@ public class Shoppinglist {
         this.date = date;
         this.orders = orders;
         this.walkRoute = walkRoute;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public ArrayList<Order> getOrders() {
+        return this.orders;
+    }
+
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    public boolean addOrder(Order order) {
+        if (this.orders == null) {
+            this.orders = new ArrayList<Order>();
+        }
+
+        return this.orders.add(order);
     }
 }

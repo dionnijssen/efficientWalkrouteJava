@@ -44,7 +44,7 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
 
     public Department show(int id){
         for (Department department :  (get())) {
-            if (department.id == id) {
+            if (department.getId() == id) {
                 return department;
             }
         }
@@ -59,7 +59,7 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
 
     public Department update(Department department){
         for (int i = 0; i < this.departments.size(); i++) {
-            if (departments.get(i).id == department.id){
+            if (departments.get(i).getId() == department.getId()){
                 departments.set(i, department);
 
                 return department;
@@ -71,7 +71,7 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
 
     public boolean delete(Department department){
         for (int i = 0; i < this.departments.size(); i++) {
-            if (departments.get(i).id == department.id){
+            if (departments.get(i).getId() == department.getId()){
                 departments.remove(i);
 
                 return true;
