@@ -4,23 +4,25 @@ import Logic.Models.Article;
 import Logic.Models.Shoppinglist;
 
 public class MinimumAmountRule extends BasicRule {
+    private int minimumAmount;
+    private String reason = null;
+
     public MinimumAmountRule(Shoppinglist shoppingList, Article article, int amount) {
         super(shoppingList, article, amount);
     }
 
-    private void apply() {
-//        if (this.amount < this.settings.get("min")) {
-//            this.amount = this.settings.get("min");
-//            this.applied = true;
-//        }
-    }
+    @Override
+    public void apply() {
+        if (this.amount >= this.minimumAmount) {
+            this.applied = false;
+            this.reason = "Success";
 
-    public int priority() {
-        return 1;
-    }
+            return;
+        }
 
-    public int getAmount() {
-        return this.amount;
+        this.amount = this.minimumAmount;
+        this.applied = true;
+        this.reason = "Minimum amount raised to minimum amount of " + this.minimumAmount;
     }
 
     public boolean hasBeenApplied() {
@@ -30,33 +32,4 @@ public class MinimumAmountRule extends BasicRule {
     public String getReason() {
         return "";
     }
-
-//    private void setOptions()
-//    {
-//        this.options = [
-//                'min' => 'int',
-//        ];
-//    }
-//
-//    private void apply()
-//    {
-//        if (this.amount < this.settings['min']) {
-//            this.amount = this.settings['min'];
-//            this.applied = true;
-//        }
-//    }
-//
-//    public int priority()
-//    {
-//        return 1;
-//    }
-//
-//    public String getReason()
-//    {
-//        if (this.applied) {
-//            return 'Raised to minimum amount';
-//        }
-//
-//        return null;
-//    }
 }

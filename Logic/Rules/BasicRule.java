@@ -5,7 +5,7 @@ import Logic.Models.Shoppinglist;
 
 import java.util.ArrayList;
 
-abstract class BasicRule {
+abstract public class BasicRule {
     protected Shoppinglist shoppingList;
     protected Article article;
     protected int amount;
@@ -16,37 +16,13 @@ abstract class BasicRule {
         this.article = article;
         this.amount = amount;
         this.applied = false;
-
-        this.setOptions();
-        this.apply();
     }
 
-    private void apply() {
-
-    }
-
-    public int priority() {
-        return 1;
-    }
-
-    public int getAmount() {
-        return this.amount;
-    }
+    public abstract void apply();
 
     public boolean hasBeenApplied() {
         return this.applied;
     }
 
-    public String getReason() {
-        return "";
-    }
-
-    private void setOptions() {
-//        this.options = ;
-    }
-
-    public ArrayList getOptions() {
-//        return this.options;
-        return new ArrayList();
-    }
+    public abstract void getReason();
 }
