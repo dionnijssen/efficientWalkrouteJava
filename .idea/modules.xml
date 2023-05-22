@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/DataLayer/DataLayer.iml" filepath="$PROJECT_DIR$/DataLayer/DataLayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/InterfaceLayer/InterfaceLayer.iml" filepath="$PROJECT_DIR$/InterfaceLayer/InterfaceLayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/Logic/Logic.iml" filepath="$PROJECT_DIR$/Logic/Logic.iml" />
-      <module fileurl="file://$PROJECT_DIR$/efficientWalkroute.iml" filepath="$PROJECT_DIR$/efficientWalkroute.iml" />
     </modules>
   </component>
 </project>
