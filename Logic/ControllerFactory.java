@@ -4,9 +4,6 @@ import Logic.Controllers.*;
 import Logic.Interfaces.Logic.*;
 import Logic.Interfaces.Logic.Controllers.*;
 
-// Het enige wat deze class doet is weten hoe de objecten gemaakt moeten worden. FactoryPattern -> opzoeken en snappen. -> opzoeken hoe het in Laravel zit
-// Dit concept heb je bij de meeste OOP opgezette projecten. Bij Laravel word dit oa gedaan met de AppServiceProvider.
-// Opzoeken Inversion of control (IOC)
 public class ControllerFactory implements ControllerFactoryInterface {
     private RepositoryFactory repositoryFactory;
     private ArticleControllerInterface articleController;
@@ -17,10 +14,16 @@ public class ControllerFactory implements ControllerFactoryInterface {
     private ShoppinglistControllerInterface shoppinglistController;
     private WalkRouteControllerInterface walkRouteController;
 
+
+    private WalkRouteManager walkrouteManager;
+    private ServiceFactory serviceFactory;
+
     public ControllerFactory(
-            RepositoryFactory repositoryFactory
+            RepositoryFactory repositoryFactory,
+            ServiceFactory serviceFactory
     ) {
         this.repositoryFactory = repositoryFactory;
+        this.serviceFactory = serviceFactory;
     }
 
     public ArticleControllerInterface getArticleController() {
@@ -80,5 +83,18 @@ public class ControllerFactory implements ControllerFactoryInterface {
         }
 
         return this.orderManager;
+    }
+
+    public WalkRouteManager getWalkrouteManager() {
+        if (null == this.walkrouteManager) {
+            this.walkrouteManager = new WalkRouteManager(
+                    this.repositoryFactory.getWalkRouteRepository(),
+                    this.repositoryFactory.getRuleRepository(),
+                    this.repositoryFactory.getArticleRepository(),
+                    this.serviceFactory.getCreateWalkRouteService()
+            );
+        }
+
+        return this.walkrouteManager;
     }
 }

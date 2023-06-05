@@ -3,10 +3,10 @@ package Logic.Rules;
 import Logic.Models.Article;
 import Logic.Models.Shoppinglist;
 
-public class WeekdayRestriction extends BasicRule {
-    public WeekdayRestriction(Shoppinglist shoppingList, Article article, int amount) {
-        super(shoppingList, article, amount);
-    }
+//public class WeekdayRestriction extends BasicRule {
+//    public WeekdayRestriction(Shoppinglist shoppingList, Article article, int amount) {
+//        super(shoppingList, article, amount);
+//    }
 //    private void setOptions()
 //    {
 //        this.options = [

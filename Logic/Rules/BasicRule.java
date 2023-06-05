@@ -11,10 +11,10 @@ abstract public class BasicRule {
     protected int amount;
     protected boolean applied;
 
-    public BasicRule(Shoppinglist shoppingList, Article article, int amount) {
+    public BasicRule(Shoppinglist shoppingList, Article article) {
         this.shoppingList = shoppingList;
         this.article = article;
-        this.amount = amount;
+
         this.applied = false;
     }
 
@@ -24,5 +24,9 @@ abstract public class BasicRule {
         return this.applied;
     }
 
-    public abstract void getReason();
+    public abstract String getReason();
+
+    public Article getArticle() {
+        return this.article;
+    }
 }

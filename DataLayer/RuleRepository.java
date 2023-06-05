@@ -12,13 +12,11 @@ public class RuleRepository  {
     public RuleRepository() {
         this.rules = new ArrayList<Rule>();
 
-        this.rules.add(new Rule(1, "max", 1, 1));
-        this.rules.add(new Rule(2, "min", 2, 5));
+        this.rules.add(new Rule(1, "min", 1, 2));
+        this.rules.add(new Rule(2, "min", 2, 500));
     }
 
     public ArrayList<Rule> get() {
         return this.rules;
     }
-
-
 }

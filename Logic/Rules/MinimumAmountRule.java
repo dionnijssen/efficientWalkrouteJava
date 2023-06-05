@@ -4,11 +4,14 @@ import Logic.Models.Article;
 import Logic.Models.Shoppinglist;
 
 public class MinimumAmountRule extends BasicRule {
-    private int minimumAmount;
+    private int amount;
     private String reason = null;
+    private int minimumAmount;
 
-    public MinimumAmountRule(Shoppinglist shoppingList, Article article, int amount) {
-        super(shoppingList, article, amount);
+    public MinimumAmountRule(Shoppinglist shoppingList, Article article, int minimumAmount) {
+        super(shoppingList, article);
+
+        this.minimumAmount = minimumAmount;
     }
 
     @Override
@@ -20,7 +23,6 @@ public class MinimumAmountRule extends BasicRule {
             return;
         }
 
-        this.amount = this.minimumAmount;
         this.applied = true;
         this.reason = "Minimum amount raised to minimum amount of " + this.minimumAmount;
     }
@@ -29,7 +31,12 @@ public class MinimumAmountRule extends BasicRule {
         return this.applied;
     }
 
+    @Override
     public String getReason() {
-        return "";
+        return "Test";
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

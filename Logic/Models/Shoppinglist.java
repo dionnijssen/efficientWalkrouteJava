@@ -5,16 +5,15 @@ import java.util.ArrayList;
 
 public class Shoppinglist {
     private int id;
-    //TODO: Check if this needs to be private
     private LocalDate date;
     private ArrayList<Order> orders;
-    private WalkRoute walkRoute;
+    private int walkRouteId;
 
     public Shoppinglist(int id, LocalDate date, ArrayList<Order> orders, WalkRoute walkRoute) {
         this.id = id;
         this.date = date;
         this.orders = orders;
-        this.walkRoute = walkRoute;
+        this.walkRouteId = walkRouteId;
     }
 
     public int getId() {
@@ -35,5 +34,14 @@ public class Shoppinglist {
         }
 
         return this.orders.add(order);
+    }
+
+    public boolean setWalkRouteId(int walkRouteId) {
+        this.walkRouteId = walkRouteId;
+        return true;
+    }
+
+    public int getWalkRouteId() {
+        return this.walkRouteId;
     }
 }

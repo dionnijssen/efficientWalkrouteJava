@@ -2,7 +2,10 @@ package Logic.Controllers;
 
 import DataLayer.WalkRouteRepository;
 import Logic.Interfaces.Logic.Controllers.WalkRouteControllerInterface;
+import Logic.Models.Article;
 import Logic.Models.WalkRoute;
+
+import java.util.ArrayList;
 
 public class WalkRouteController implements WalkRouteControllerInterface {
     WalkRouteRepository walkRouteRepo;
@@ -15,15 +18,20 @@ public class WalkRouteController implements WalkRouteControllerInterface {
         return this.walkRouteRepo.show(id);
     }
 
-//    public WalkRoute create(WalkRoute walkroute) {
-//        return this.walkRouteRepo.create(walkroute);
-//    }
+    public WalkRoute create(ArrayList<Article> articles) {
+        int highestId = 0;
+        for (WalkRoute walkRoute : this.walkRouteRepo.get()) {
+            if (walkRoute.getId() > highestId) {
+                highestId = walkRoute.getId();
+            }
+        }
 
-//    public WalkRoute update(WalkRoute walkroute) {
-//        return this.walkRouteRepo.update(walkroute);
-//    }
+        WalkRoute walkroute = new WalkRoute(highestId + 1);
 
-//    public boolean delete (WalkRoute walkroute) {
-//        return this.walkRouteRepo.delete(walkroute);
-//    }
+        for (Article article : articles) {
+            walkroute.addArticle(article);
+        }
+
+        return this.walkRouteRepo.store(walkroute);
+    }
 }
