@@ -3,8 +3,6 @@ package Logic.Rules;
 import Logic.Models.Article;
 import Logic.Models.Shoppinglist;
 
-import java.util.ArrayList;
-
 abstract public class BasicRule {
     protected Shoppinglist shoppingList;
     protected Article article;
@@ -25,6 +23,8 @@ abstract public class BasicRule {
     }
 
     public abstract String getReason();
+
+    public abstract void updateOrderrule();
 
     public Article getArticle() {
         return this.article;

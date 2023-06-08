@@ -22,8 +22,6 @@ public class CreateWalkRouteService {
                 case "min":
                     MinimumAmountRule minimumAmountRule = new MinimumAmountRule(shoppinglist, this.articleRepo.show(rule.getArticleId()), rule.getAmount());
 
-
-
                     minimumAmountRule.setAmount(this.getOrderLineAmount(shoppinglist, rule.getArticleId()));
                     minimumAmountRule.apply();
 

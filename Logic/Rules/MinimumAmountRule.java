@@ -1,6 +1,11 @@
 package Logic.Rules;
 
+import DataLayer.OrderruleRepository;
+import DataLayer.ShoppinglistRepository;
+import Logic.Controllers.OrderManager;
 import Logic.Models.Article;
+import Logic.Models.Order;
+import Logic.Models.Orderrule;
 import Logic.Models.Shoppinglist;
 
 public class MinimumAmountRule extends BasicRule {
@@ -34,6 +39,22 @@ public class MinimumAmountRule extends BasicRule {
     @Override
     public String getReason() {
         return "Test";
+    }
+
+    @Override
+    public void updateOrderrule() {
+//        // Get Orderrule and change amount to minimum amount
+//        for (Order order : this.shoppingList.getOrders()) {
+//            for (Orderrule orderrule : order.getOrderrules()) {
+//                if (orderrule.getArticle().getId() == this.article.getId()) {
+//                    orderrule.setAmount(this.minimumAmount);
+//                    new OrderruleRepository().update(orderrule);
+//                    new OrderManager().updateOrder(order);
+//
+//                    return;
+//                }
+//            }
+//        }
     }
 
     public void setAmount(int amount) {
