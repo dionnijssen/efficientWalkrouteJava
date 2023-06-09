@@ -11,33 +11,34 @@ public class WalkRouteManager {
     RuleRepository ruleRepo;
     ArticleRepository articleRepo;
     CreateWalkRouteService createWalkRouteService;
+    DepartmentRepository departmentRepo;
 
     public WalkRouteManager(
             WalkRouteRepository walkRouteRepository,
             RuleRepository ruleRepository,
             ArticleRepository articleRepository,
-            CreateWalkRouteService createWalkRouteService
+            CreateWalkRouteService createWalkRouteService,
+            DepartmentRepository departmentRepository
     ) {
         this.walkRouteRepo = walkRouteRepository;
         this.ruleRepo = ruleRepository;
         this.articleRepo = articleRepository;
         this.createWalkRouteService = createWalkRouteService;
+        this.departmentRepo = departmentRepository;
     }
 
     public Shoppinglist createWalkRoute(Shoppinglist shoppinglist) {
         ArrayList articleIds = this.getShoppinglistArticles(shoppinglist);
         ArrayList<Rule> activeRules = this.getRulesForShoppinglistArticles(articleIds);
 
-        ArrayList failedRules = this.createWalkRouteService.applyRules(activeRules, shoppinglist);
+        Boolean success = this.createWalkRouteService.applyRules(activeRules, shoppinglist);
 
-        if (failedRules.size() > 0) {
-//            return failedRules;
-
-            // Notify user of failed rules
-            // new Interface controller which shows this?
+        if (success) {
+            return this.calculateWalkroute(shoppinglist);
         }
 
-        return this.calculateWalkroute(shoppinglist);
+        System.out.println("Failed to create walkroute");
+        return shoppinglist;
     }
 
     private Shoppinglist calculateWalkroute(Shoppinglist shoppinglist) {
@@ -68,7 +69,7 @@ public class WalkRouteManager {
     }
 
     private Department getDepartmentForArticle(int articleId) {
-        ArrayList<Department> departments = this.getDepartments();
+        ArrayList<Department> departments = this.departmentRepo.get();
 
         for (Department department : departments) {
             if (department.getArticleIds().contains(articleId)) {
@@ -115,9 +116,5 @@ public class WalkRouteManager {
         });
 
         return rulesForShoppinglist;
-    }
-
-    private ArrayList getDepartments() {
-        return new DepartmentRepository().get();
     }
 }
