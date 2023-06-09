@@ -10,7 +10,6 @@ import Logic.Models.Shoppinglist;
 
 public class MinimumAmountRule extends BasicRule {
     private int amount;
-    private String reason = null;
     private int minimumAmount;
 
     public MinimumAmountRule(Shoppinglist shoppingList, Article article, int minimumAmount) {
@@ -20,8 +19,8 @@ public class MinimumAmountRule extends BasicRule {
     }
 
     @Override
-    public void apply() {
-        if (this.amount >= this.minimumAmount) {
+    public void apply(Orderrule orderrule) {
+        if (orderrule.getAmount() > this.minimumAmount) {
             this.applied = false;
             this.reason = "Success";
 
@@ -29,35 +28,14 @@ public class MinimumAmountRule extends BasicRule {
         }
 
         this.applied = true;
-        this.reason = "Minimum amount raised to minimum amount of " + this.minimumAmount;
+        this.setReason();
     }
 
     public boolean hasBeenApplied() {
         return this.applied;
     }
 
-    @Override
-    public String getReason() {
-        return "Test";
-    }
-
-    @Override
-    public void updateOrderrule() {
-//        // Get Orderrule and change amount to minimum amount
-//        for (Order order : this.shoppingList.getOrders()) {
-//            for (Orderrule orderrule : order.getOrderrules()) {
-//                if (orderrule.getArticle().getId() == this.article.getId()) {
-//                    orderrule.setAmount(this.minimumAmount);
-//                    new OrderruleRepository().update(orderrule);
-//                    new OrderManager().updateOrder(order);
-//
-//                    return;
-//                }
-//            }
-//        }
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setReason() {
+        this.reason = "Minimum amount of "+ this.article.getName() +" has to be " + this.minimumAmount;
     }
 }

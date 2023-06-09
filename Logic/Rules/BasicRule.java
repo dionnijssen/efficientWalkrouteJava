@@ -1,6 +1,7 @@
 package Logic.Rules;
 
 import Logic.Models.Article;
+import Logic.Models.Orderrule;
 import Logic.Models.Shoppinglist;
 
 abstract public class BasicRule {
@@ -8,6 +9,7 @@ abstract public class BasicRule {
     protected Article article;
     protected int amount;
     protected boolean applied;
+    protected String reason;
 
     public BasicRule(Shoppinglist shoppingList, Article article) {
         this.shoppingList = shoppingList;
@@ -16,15 +18,17 @@ abstract public class BasicRule {
         this.applied = false;
     }
 
-    public abstract void apply();
+    public abstract void apply(Orderrule orderrule);
 
     public boolean hasBeenApplied() {
         return this.applied;
     }
 
-    public abstract String getReason();
+    public String getReason() {
+        return this.reason;
+    }
 
-    public abstract void updateOrderrule();
+    public abstract void setReason();
 
     public Article getArticle() {
         return this.article;
