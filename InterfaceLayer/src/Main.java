@@ -126,7 +126,7 @@ public class Main {
             this.shoppingListOptions(shoppinglist);
         }
 
-        this.controllerFactory.getWalkrouteManager().createWalkRoute(shoppinglist);
+        shoppinglist = this.controllerFactory.getWalkrouteManager().createWalkRoute(shoppinglist);
 
         this.shoppingListOptions(shoppinglist);
     }
