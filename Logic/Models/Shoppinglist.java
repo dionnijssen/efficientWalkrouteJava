@@ -41,7 +41,7 @@ public class Shoppinglist {
         return true;
     }
 
-    public int getWalkRouteId() {
+    public Integer getWalkRouteId() {
         return this.walkRouteId;
     }
 }
