@@ -1,12 +1,14 @@
 package Logic.Services;
 
 import DataLayer.ArticleRepository;
+import Logic.Models.Order;
+import Logic.Models.Orderrule;
 import Logic.Models.Rule;
 import Logic.Models.Shoppinglist;
+import Logic.Rules.MaximumAmountRule;
 import Logic.Rules.MinimumAmountRule;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class CreateWalkRouteService {
     private ArticleRepository articleRepo;
@@ -15,41 +17,57 @@ public class CreateWalkRouteService {
         this.articleRepo = articleRepo;
     }
 
-    public ArrayList applyRules(ArrayList<Rule> activeRules, Shoppinglist shoppinglist) {
+    public Boolean applyRules(ArrayList<Rule> activeRules, Shoppinglist shoppinglist) {
+        Boolean success = true;
         ArrayList appliedRules = new ArrayList();
         for (Rule rule : activeRules) {
+            //Todo refactor this into a mapper
             switch (rule.getType()) {
                 case "min":
                     MinimumAmountRule minimumAmountRule = new MinimumAmountRule(shoppinglist, this.articleRepo.show(rule.getArticleId()), rule.getAmount());
 
-                    minimumAmountRule.setAmount(this.getOrderLineAmount(shoppinglist, rule.getArticleId()));
-                    minimumAmountRule.apply();
+                    minimumAmountRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()));
 
                     if (minimumAmountRule.hasBeenApplied()) {
-                        appliedRules.add(minimumAmountRule.getReason());
+                        System.out.println(minimumAmountRule.getReason());
+                        success = false;
                     }
                     break;
                 case "max":
+                    MaximumAmountRule maximumAmountRule = new MaximumAmountRule(shoppinglist, this.articleRepo.show(rule.getArticleId()), rule.getAmount());
+
+                    maximumAmountRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()));
+
+                    if (maximumAmountRule.hasBeenApplied()) {
+                        System.out.println(maximumAmountRule.getReason());
+                        success = false;
+                    }
+
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid rule type");
             }
         }
 
-        return appliedRules;
+        return success;
     }
 
-    private int getOrderLineAmount(Shoppinglist shoppinglist, int articleId) {
-        AtomicInteger amount = new AtomicInteger();
+    private Orderrule getOrderLine(Shoppinglist shoppinglist, int articleId) {
+        ArrayList<Orderrule> orderrules = new ArrayList<Orderrule>();
 
-        shoppinglist.getOrders().forEach(order -> {
-            order.getOrderrules().forEach(orderrule -> {
+        for (Order order : shoppinglist.getOrders()) {
+            for (Orderrule orderrule : order.getOrderrules()) {
                 if (orderrule.getArticle().getId() == articleId) {
-                    amount.set(orderrule.getAmount());
+                    orderrules.add(orderrule);
                 }
-            });
-        });
+            }
+        }
 
-        return amount.get();
+        int amount = 0;
+        for (Orderrule orderrule : orderrules) {
+            amount += orderrule.getAmount();
+        }
+
+        return new Orderrule(new ArticleRepository().show(articleId), amount);
     }
 }
