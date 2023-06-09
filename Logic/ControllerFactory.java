@@ -91,7 +91,8 @@ public class ControllerFactory implements ControllerFactoryInterface {
                     this.repositoryFactory.getWalkRouteRepository(),
                     this.repositoryFactory.getRuleRepository(),
                     this.repositoryFactory.getArticleRepository(),
-                    this.serviceFactory.getCreateWalkRouteService()
+                    this.serviceFactory.getCreateWalkRouteService(),
+                    this.repositoryFactory.getDepartmentRepository()
             );
         }
 
