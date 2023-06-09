@@ -11,7 +11,6 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
         this.departments = new ArrayList<Department>();
 
         ArrayList<Department> departments = new ArrayList<>();
-//        ArrayList<Article> articles = new ArrayList<Article>();
 
         ArrayList<Integer> groentes  = new ArrayList<Integer>();
         groentes.add(1);
@@ -33,6 +32,8 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
                         2,
                         fruit
                 ));
+
+        this.departments = departments;
     }
 
     public ArrayList<Department> get() {
