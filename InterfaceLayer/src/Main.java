@@ -132,6 +132,12 @@ public class Main {
     }
 
     private void showWalkRoute(Shoppinglist shoppinglist) throws IOException, ParseException {
+        if (shoppinglist.getWalkRouteId() == null) {
+            System.out.println();
+            System.out.println("No walkroute found for this shoppinglist");
+            this.shoppingListOptions(shoppinglist);
+        }
+
         WalkRoute walkRoute = this.repositoryFactory.getWalkRouteRepository().show(shoppinglist.getWalkRouteId());
 
         System.out.println("");
