@@ -5,16 +5,6 @@ import Logic.Models.Article;
 
 import java.util.ArrayList;
 
-/* Vragen:
-    - Hoe is het het makkelijkst om data op te slaan. Want het kan toch gedaan worden door het in de repo op te slaan?
-    Aangezien de RepositoryFactory de repo in memory houd?
-    - Is onderstaand de juiste manier om data op de slaan?
-    - Toen ik interface implementeerde zag ik niet de opties erbij zitten?
-    - Hoe data toe te voegen in de DepartmentRepository? (Articles nodig)
-    - Wat is de correcte manier om de controllerFactory te gebruiken?
-    Bij een method als dependency de controller?
-    En dan bij aanroepen method de factory gebruiken om die dependency aan te maken?
- */
 public class ArticleRepository implements RepositoryInterface<Article> {
     private ArrayList<Article> articles;
 
