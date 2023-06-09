@@ -180,6 +180,7 @@ public class Main {
         boolean again = true;
         Order updatedOrder = null;
 
+        ArrayList<Orderrule> orderrules = new ArrayList<>();
         do {
             for (Article article : this.controllerFactory.getArticleController().get()) {
                 if (firstTime) {
@@ -194,14 +195,27 @@ public class Main {
             System.out.println("Amount?");
             int amount = Helpers.readInt();
 
-            Orderrule orderrule = new Orderrule(article, amount);
+            if (amount == 0) {
+                System.out.println("Amount cannot be 0");
+                continue;
+            }
+            boolean articleExists = false;
+            // Check if article is already in orderrules
+            for (Orderrule rule : orderrules) {
+                if (rule.getArticle().getId() == article.getId()) {
+                    rule.setAmount(rule.getAmount() + amount);
+                    articleExists = true;
+                }
+            }
 
-            updatedOrder = this.controllerFactory.getOrderManager().addToOrder(order, orderrule);
+            if (!articleExists) {
+                orderrules.add(new Orderrule(article, amount));
+            }
 
             System.out.println("");
             System.out.println("Current articles:");
 
-            for (Orderrule rule : updatedOrder.getOrderrules()) {
+            for (Orderrule rule : orderrules) {
                 System.out.println(rule.getArticle().getName() + ", " + rule.getAmount());
             }
             System.out.println("");
@@ -224,6 +238,10 @@ public class Main {
                 case 2 -> again = false;
             }
         } while (again);
+
+        for (Orderrule orderrule : orderrules) {
+            updatedOrder = this.controllerFactory.getOrderManager().addToOrder(order, orderrule);
+        }
 
         return updatedOrder;
     }
