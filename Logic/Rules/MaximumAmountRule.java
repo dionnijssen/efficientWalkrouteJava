@@ -5,7 +5,6 @@ import Logic.Models.Orderrule;
 import Logic.Models.Shoppinglist;
 
 public class MaximumAmountRule extends BasicRule {
-    private int amount;
     private int maxAmount;
 
     public MaximumAmountRule(Shoppinglist shoppingList, Article article, int maxAmount) {
@@ -16,7 +15,7 @@ public class MaximumAmountRule extends BasicRule {
 
     @Override
     public void apply(Orderrule orderrule) {
-        if (orderrule.getAmount() < this.maxAmount) {
+        if (orderrule.getAmount() <= this.maxAmount) {
             this.applied = false;
             this.reason = "Success";
 
