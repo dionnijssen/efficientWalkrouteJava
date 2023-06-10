@@ -25,6 +25,7 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
 
         ArrayList<Integer> fruit  = new ArrayList<Integer>();
         fruit.add(2);
+        fruit.add(3);
         departments.add(
                 new Department(
                         2,
