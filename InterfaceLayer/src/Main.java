@@ -99,7 +99,7 @@ public class Main {
         System.out.println("");
         System.out.println("Shoppinglist actions:");
         System.out.println("1. Create order");
-        System.out.println("2. TODO?: Order actions");
+        System.out.println("2. Order actions");
         System.out.println("3. Create Walkroute");
         System.out.println("4. Show Walkroute");
 
@@ -113,10 +113,115 @@ public class Main {
 
         switch (Integer.parseInt(option)) {
             case 1 -> this.createOrder(shoppinglist);
-//            case 2 -> this.selectShoppinglist(this.controllerFactory.getShoppinglistController(), this.controllerFactory.getOrderController());
+            case 2 -> this.selectOrder(shoppinglist);
             case 3 -> this.createWalkroute(shoppinglist);
             case 4 -> this.showWalkRoute(shoppinglist);
         }
+    }
+
+    private void selectOrder(Shoppinglist shoppinglist) throws IOException, ParseException {
+        System.out.println("");
+        System.out.println("Select an order:");
+
+        Order selectedOrder = null;
+
+        try {
+            ArrayList orderOptions = new ArrayList<>();
+            ArrayList<Order> orders = shoppinglist.getOrders();
+
+            if (orders.size() == 0) {
+                throw new RuntimeException("No orders found");
+            }
+
+            int count = 1;
+            for (Order order : orders) {
+                System.out.println(count + " " + order.getId());
+                orderOptions.add(Integer.toString(order.getId()));
+                count++;
+            }
+            orderOptions.add(Integer.toString(count));
+            System.out.println(count + " Back");
+            String selected = Helpers.readOption(orderOptions);
+
+            if (selected.equals(Integer.toString(count))) {
+                shoppingListOptions(shoppinglist);
+            }
+
+            int selectedOrderId = Integer.parseInt(selected);
+            for (Order order : orders) {
+                if (order.getId() == selectedOrderId) {
+                    selectedOrder = order;
+                }
+            }
+
+//            selectedOrder = this.controllerFactory.getOrderController().show(Integer.parseInt(selected));
+        } catch (RuntimeException | IOException e) {
+            System.out.println(e.getMessage());
+            shoppingListOptions(shoppinglist);
+        }
+
+        selectOrderrule(shoppinglist, selectedOrder);
+    }
+
+    private void selectOrderrule(Shoppinglist shoppinglist, Order order) throws IOException, ParseException {
+        System.out.println("");
+        System.out.println("Select an orderline:");
+
+        Orderrule selectedOrderrule = null;
+
+        try {
+            ArrayList orderOptions = new ArrayList<>();
+            ArrayList<Orderrule> orderrules = order.getOrderrules();
+
+            if (orderrules.size() == 0) {
+                throw new RuntimeException("No orderrules found");
+            }
+
+            int count = 0;
+            for (int i = 0; i < orderrules.size(); i++) {
+                System.out.println(i + " " + orderrules.get(i).getArticle().getName());
+                orderOptions.add(Integer.toString(i));
+
+                count++;
+            }
+
+            orderOptions.add(Integer.toString(count));
+            System.out.println(count + " Back");
+
+            String selected = Helpers.readOption(orderOptions);
+
+            if (selected.equals(Integer.toString(count))) {
+                shoppingListOptions(shoppinglist);
+            }
+
+            selectedOrderrule = orderrules.get(Integer.parseInt(selected));
+        } catch (RuntimeException | IOException e) {
+            System.out.println(e.getMessage());
+            shoppingListOptions(shoppinglist);
+        }
+
+        updateOrderrule(shoppinglist, order, selectedOrderrule);
+    }
+
+    private void updateOrderrule(Shoppinglist shoppinglist, Order order, Orderrule orderrule) throws IOException, ParseException {
+        System.out.println("");
+        System.out.println("Set amount");
+
+        int amount = Helpers.readInt();
+
+        if (amount == 0) {
+            for (int i = 0; i < order.getOrderrules().size(); i++) {
+                if (order.getOrderrules().get(i).getArticle().getId() == orderrule.getArticle().getId()) {
+                    order.getOrderrules().remove(i);
+                }
+            }
+        }
+
+        orderrule.setAmount(amount);
+        System.out.println("Amount updated!");
+
+        //Check if it is updated
+        shoppingListOptions(shoppinglist);
     }
 
     private void createWalkroute(Shoppinglist shoppinglist) throws IOException, ParseException {
