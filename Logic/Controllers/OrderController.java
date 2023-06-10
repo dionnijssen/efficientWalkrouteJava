@@ -24,8 +24,4 @@ public class OrderController implements OrderControllerInterface {
 
         return this.orderRepo.store(order);
     }
-
-    public Order show(int id) {
-        return this.orderRepo.show(id);
-    }
 }
