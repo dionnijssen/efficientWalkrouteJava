@@ -3,7 +3,6 @@ package Logic.Controllers;
 import DataLayer.ArticleRepository;
 import DataLayer.ShoppinglistRepository;
 import Logic.Interfaces.Logic.Controllers.OrderManagerInterface;
-import Logic.Models.Article;
 import Logic.Models.Order;
 import Logic.Models.Orderrule;
 import Logic.Models.Shoppinglist;
@@ -19,13 +18,13 @@ public class OrderManager implements OrderManagerInterface {
     }
 
     public Order addToOrder(Order order, Orderrule orderrule) {
-//        if (order.orderrules == null) {
-//            ArrayList<Orderrule> orderrules = new ArrayList<Orderrule>();
-//            orderrules.add(orderrule);
-//            order.orderrules = orderrules;
-//        } else {
         order.getOrderrules().add(orderrule);
-//        }
+
+        return order;
+    }
+
+    public Order removeFromOrder(Order order, Orderrule orderrule) {
+        order.getOrderrules().remove(orderrule);
 
         return order;
     }
@@ -57,9 +56,5 @@ public class OrderManager implements OrderManagerInterface {
 
             throw new RuntimeException("Something went wrong, please try again");
         }
-    }
-
-    public boolean removeFromOrder(Order order, Article article, int amount) {
-        return false;
     }
 }

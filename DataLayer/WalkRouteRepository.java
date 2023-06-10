@@ -17,11 +17,9 @@ public class WalkRouteRepository implements RepositoryInterface<WalkRoute> {
     }
 
     public WalkRoute show(int walkRouteId) {
-        ArrayList<WalkRoute> walkRoutes = this.get();
-
-        for (int i = 0; i < walkRoutes.size(); i++) {
-            if (walkRoutes.get(i).getId() == walkRouteId) {
-                return walkRoutes.get(i);
+        for (WalkRoute walkRoute : this.get()) {
+            if (walkRoute.getId() == walkRouteId) {
+                return walkRoute;
             }
         }
 

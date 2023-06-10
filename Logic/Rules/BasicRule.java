@@ -1,52 +1,36 @@
 package Logic.Rules;
 
 import Logic.Models.Article;
+import Logic.Models.Orderrule;
 import Logic.Models.Shoppinglist;
 
-import java.util.ArrayList;
-
-abstract class BasicRule {
+abstract public class BasicRule {
     protected Shoppinglist shoppingList;
     protected Article article;
     protected int amount;
     protected boolean applied;
+    protected String reason;
 
-    public BasicRule(Shoppinglist shoppingList, Article article, int amount) {
+    public BasicRule(Shoppinglist shoppingList, Article article) {
         this.shoppingList = shoppingList;
         this.article = article;
-        this.amount = amount;
+
         this.applied = false;
-
-        this.setOptions();
-        this.apply();
     }
 
-    private void apply() {
-
-    }
-
-    public int priority() {
-        return 1;
-    }
-
-    public int getAmount() {
-        return this.amount;
-    }
+    public abstract void apply(Orderrule orderrule);
 
     public boolean hasBeenApplied() {
         return this.applied;
     }
 
     public String getReason() {
-        return "";
+        return this.reason;
     }
 
-    private void setOptions() {
-//        this.options = ;
-    }
+    public abstract void setReason();
 
-    public ArrayList getOptions() {
-//        return this.options;
-        return new ArrayList();
+    public Article getArticle() {
+        return this.article;
     }
 }

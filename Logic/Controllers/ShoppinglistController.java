@@ -42,6 +42,14 @@ public class ShoppinglistController implements ShoppinglistControllerInterface {
         }
     }
 
+    public Boolean update(Shoppinglist shoppinglist) {
+        if (this.shoppinglistRepo.update(shoppinglist) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private Shoppinglist createShoppingList(LocalDate date, ArrayList<Order> orders, WalkRoute walkRoute) {
         ArrayList<Shoppinglist> shoppinglists = shoppinglistRepo.get();
 

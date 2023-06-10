@@ -1,28 +1,22 @@
 import Logic.ControllerFactory;
 import Logic.Helpers.Helpers;
-import Logic.Models.Article;
-import Logic.Models.Order;
-import Logic.Models.Orderrule;
-import Logic.Models.Shoppinglist;
+import Logic.Models.*;
 import Logic.RepositoryFactory;
+import Logic.ServiceFactory;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
 public class Main {
-    /* Besproken met John
-    - Main gebruiken voor de flow van de applicatie. De rest uitbesteden aan de controllers en repos (repos in de controller).
-    - Class App waarin alle static dingen die hier gedeclareerd zijn, daarin zetten. En waar dat hier gebruikt is verwijzen naar App.Java
-    - Database renamen naar RepositoryFactory
-        - Database is de frontend voor de Datalayer repositories. Het is enkel nodig om deze op te kunnen halen.
-    - De Repositories in de controllers injecteren, ipv instantiëren in de constructor.
-    In de main heb je de mogelijkheid om de echte repos en controllers bij elkaar te brengen. Of in de UnitTest.
-    - De constructors van de controllers zo centraal mogelijk aanmaken zodat je niet de benodigde parameters overal aan moet passen mocht dit ooit uitgebreid worden.
-    - Documenten opnieuw uploaden -> in Sprint 1,2,3
-     */
     private ControllerFactory controllerFactory;
     private RepositoryFactory repositoryFactory;
+    private ServiceFactory serviceFactory;
+
+    /*
+        - Voeg test toe van (meerdere) Orders toevoegen aan shoppingList
+        - Voeg test toe van Algoritme
+     */
 
     public static void main(String[] args) throws IOException, ParseException {
         Main main = new Main();
@@ -31,7 +25,8 @@ public class Main {
 
     public void main() throws IOException, ParseException {
         this.repositoryFactory = new RepositoryFactory();
-        this.controllerFactory = new ControllerFactory(repositoryFactory);
+        this.serviceFactory = new ServiceFactory(this.repositoryFactory);
+        this.controllerFactory = new ControllerFactory(this.repositoryFactory, this.serviceFactory);
 
         this.start();
     }
@@ -104,21 +99,163 @@ public class Main {
         System.out.println("");
         System.out.println("Shoppinglist actions:");
         System.out.println("1. Create order");
-        System.out.println("2. TODO?: Order actions");
-        System.out.println("3. TODO: Create Walkroute");
+        System.out.println("2. Order actions");
+        System.out.println("3. Create Walkroute");
+        System.out.println("4. Show Walkroute");
 
         ArrayList<String> options = new ArrayList<String>();
         options.add("1");
         options.add("2");
         options.add("3");
+        options.add("4");
 
         String option = Helpers.readOption(options);
 
         switch (Integer.parseInt(option)) {
             case 1 -> this.createOrder(shoppinglist);
-//            case 2 -> this.selectShoppinglist(this.controllerFactory.getShoppinglistController(), this.controllerFactory.getOrderController());
-//            case 3 -> this.listShoppingLists(this.controllerFactory.getShoppinglistController());
+            case 2 -> this.selectOrder(shoppinglist);
+            case 3 -> this.createWalkroute(shoppinglist);
+            case 4 -> this.showWalkRoute(shoppinglist);
         }
+    }
+
+    private void selectOrder(Shoppinglist shoppinglist) throws IOException, ParseException {
+        System.out.println("");
+        System.out.println("Select an order:");
+
+        Order selectedOrder = null;
+
+        try {
+            ArrayList orderOptions = new ArrayList<>();
+            ArrayList<Order> orders = shoppinglist.getOrders();
+
+            if (orders.size() == 0) {
+                throw new RuntimeException("No orders found");
+            }
+
+            int count = 1;
+            for (Order order : orders) {
+                System.out.println(count + " " + order.getId());
+                orderOptions.add(Integer.toString(order.getId()));
+                count++;
+            }
+            orderOptions.add(Integer.toString(count));
+            System.out.println(count + " Back");
+            String selected = Helpers.readOption(orderOptions);
+
+            if (selected.equals(Integer.toString(count))) {
+                shoppingListOptions(shoppinglist);
+            }
+
+            int selectedOrderId = Integer.parseInt(selected);
+            for (Order order : orders) {
+                if (order.getId() == selectedOrderId) {
+                    selectedOrder = order;
+                }
+            }
+
+//            selectedOrder = this.controllerFactory.getOrderController().show(Integer.parseInt(selected));
+        } catch (RuntimeException | IOException e) {
+            System.out.println(e.getMessage());
+            shoppingListOptions(shoppinglist);
+        }
+
+        selectOrderrule(shoppinglist, selectedOrder);
+    }
+
+    private void selectOrderrule(Shoppinglist shoppinglist, Order order) throws IOException, ParseException {
+        System.out.println("");
+        System.out.println("Select an orderline:");
+
+        Orderrule selectedOrderrule = null;
+
+        try {
+            ArrayList orderOptions = new ArrayList<>();
+            ArrayList<Orderrule> orderrules = order.getOrderrules();
+
+            if (orderrules.size() == 0) {
+                throw new RuntimeException("No orderrules found");
+            }
+
+            int count = 0;
+            for (int i = 0; i < orderrules.size(); i++) {
+                System.out.println(i + " " + orderrules.get(i).getArticle().getName());
+                orderOptions.add(Integer.toString(i));
+
+                count++;
+            }
+
+            orderOptions.add(Integer.toString(count));
+            System.out.println(count + " Back");
+
+            String selected = Helpers.readOption(orderOptions);
+
+            if (selected.equals(Integer.toString(count))) {
+                shoppingListOptions(shoppinglist);
+            }
+
+            selectedOrderrule = orderrules.get(Integer.parseInt(selected));
+        } catch (RuntimeException | IOException e) {
+            System.out.println(e.getMessage());
+            shoppingListOptions(shoppinglist);
+        }
+
+        updateOrderrule(shoppinglist, order, selectedOrderrule);
+    }
+
+    private void updateOrderrule(Shoppinglist shoppinglist, Order order, Orderrule orderrule) throws IOException, ParseException {
+        System.out.println("");
+        System.out.println("Set amount");
+
+        int amount = Helpers.readInt();
+
+        if (amount == 0) {
+            for (int i = 0; i < order.getOrderrules().size(); i++) {
+                if (order.getOrderrules().get(i).getArticle().getId() == orderrule.getArticle().getId()) {
+                    order.getOrderrules().remove(i);
+                }
+            }
+        }
+
+        orderrule.setAmount(amount);
+        System.out.println("Amount updated!");
+
+        //Check if it is updated
+        shoppingListOptions(shoppinglist);
+    }
+
+    private void createWalkroute(Shoppinglist shoppinglist) throws IOException, ParseException {
+        if (shoppinglist.getOrders() == null) {
+            System.out.println();
+            System.out.println("No orders found for this shoppinglist");
+            this.shoppingListOptions(shoppinglist);
+        }
+
+        shoppinglist = this.controllerFactory.getWalkrouteManager().createWalkRoute(shoppinglist);
+
+        this.shoppingListOptions(shoppinglist);
+    }
+
+    private void showWalkRoute(Shoppinglist shoppinglist) throws IOException, ParseException {
+        if (shoppinglist.getWalkRouteId() == 0) {
+            System.out.println();
+            System.out.println("No walkroute found for this shoppinglist");
+            this.shoppingListOptions(shoppinglist);
+        }
+
+        WalkRoute walkRoute = this.repositoryFactory.getWalkRouteRepository().show(shoppinglist.getWalkRouteId());
+
+        System.out.println("");
+        System.out.println("Walkroute for shoppinglist " + shoppinglist.getId() + " on " + shoppinglist.getDate());
+        for (Article article : walkRoute.getWalkroute()) {
+            int amount = this.controllerFactory.getWalkrouteManager().getShoppingListArticleAmount(shoppinglist, article);
+
+            System.out.println(article.getName() + " " + article.getDescription() + " " + amount);
+        }
+        System.out.println();
+        System.out.println("End of walkroute");
+
+        this.shoppingListOptions(shoppinglist);
     }
 
     public void createOrder(Shoppinglist shoppinglist) throws IOException, ParseException {
@@ -148,6 +285,7 @@ public class Main {
         boolean again = true;
         Order updatedOrder = null;
 
+        ArrayList<Orderrule> orderrules = new ArrayList<>();
         do {
             for (Article article : this.controllerFactory.getArticleController().get()) {
                 if (firstTime) {
@@ -162,14 +300,27 @@ public class Main {
             System.out.println("Amount?");
             int amount = Helpers.readInt();
 
-            Orderrule orderrule = new Orderrule(article, amount);
+            if (amount == 0) {
+                System.out.println("Amount cannot be 0");
+                continue;
+            }
+            boolean articleExists = false;
+            // Check if article is already in orderrules
+            for (Orderrule rule : orderrules) {
+                if (rule.getArticle().getId() == article.getId()) {
+                    rule.setAmount(rule.getAmount() + amount);
+                    articleExists = true;
+                }
+            }
 
-            updatedOrder = this.controllerFactory.getOrderManager().addToOrder(order, orderrule);
+            if (!articleExists) {
+                orderrules.add(new Orderrule(article, amount));
+            }
 
             System.out.println("");
             System.out.println("Current articles:");
 
-            for (Orderrule rule : updatedOrder.getOrderrules()) {
+            for (Orderrule rule : orderrules) {
                 System.out.println(rule.getArticle().getName() + ", " + rule.getAmount());
             }
             System.out.println("");
@@ -193,9 +344,11 @@ public class Main {
             }
         } while (again);
 
+        for (Orderrule orderrule : orderrules) {
+            updatedOrder = this.controllerFactory.getOrderManager().addToOrder(order, orderrule);
+        }
+
         return updatedOrder;
     }
-
-    //TODO: Tests
 }
 

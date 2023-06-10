@@ -1,62 +1,41 @@
 package Logic.Rules;
 
+import DataLayer.OrderruleRepository;
+import DataLayer.ShoppinglistRepository;
+import Logic.Controllers.OrderManager;
 import Logic.Models.Article;
+import Logic.Models.Order;
+import Logic.Models.Orderrule;
 import Logic.Models.Shoppinglist;
 
 public class MinimumAmountRule extends BasicRule {
-    public MinimumAmountRule(Shoppinglist shoppingList, Article article, int amount) {
-        super(shoppingList, article, amount);
+    private int amount;
+    private int minimumAmount;
+
+    public MinimumAmountRule(Shoppinglist shoppingList, Article article, int minimumAmount) {
+        super(shoppingList, article);
+
+        this.minimumAmount = minimumAmount;
     }
 
-    private void apply() {
-//        if (this.amount < this.settings.get("min")) {
-//            this.amount = this.settings.get("min");
-//            this.applied = true;
-//        }
-    }
+    @Override
+    public void apply(Orderrule orderrule) {
+        if (orderrule.getAmount() > this.minimumAmount) {
+            this.applied = false;
+            this.reason = "Success";
 
-    public int priority() {
-        return 1;
-    }
+            return;
+        }
 
-    public int getAmount() {
-        return this.amount;
+        this.applied = true;
+        this.setReason();
     }
 
     public boolean hasBeenApplied() {
         return this.applied;
     }
 
-    public String getReason() {
-        return "";
+    public void setReason() {
+        this.reason = "Minimum amount of "+ this.article.getName() +" has to be " + this.minimumAmount;
     }
-
-//    private void setOptions()
-//    {
-//        this.options = [
-//                'min' => 'int',
-//        ];
-//    }
-//
-//    private void apply()
-//    {
-//        if (this.amount < this.settings['min']) {
-//            this.amount = this.settings['min'];
-//            this.applied = true;
-//        }
-//    }
-//
-//    public int priority()
-//    {
-//        return 1;
-//    }
-//
-//    public String getReason()
-//    {
-//        if (this.applied) {
-//            return 'Raised to minimum amount';
-//        }
-//
-//        return null;
-//    }
 }

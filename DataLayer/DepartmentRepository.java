@@ -10,32 +10,30 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
     public DepartmentRepository() {
         this.departments = new ArrayList<Department>();
 
-//        ArrayList<Department> departments = new ArrayList<>();
-//        ArrayList<Article> articles = new ArrayList<Article>();
-//
-//        departments.add(
-//                new Department(
-//                        1,
-//                        "Groente",
-//                        1,
-//                        articles
-//                ));
-//
-//        departments.add(
-//                new Department(
-//                        2,
-//                        "Fruit",
-//                        2,
-//                        articles
-//                ));
-//
-//        departments.add(
-//                new Department(
-//                        3,
-//                        "Drank",
-//                        3,
-//                        articles
-//                ));
+        ArrayList<Department> departments = new ArrayList<>();
+
+        ArrayList<Integer> groentes  = new ArrayList<Integer>();
+        groentes.add(1);
+
+        departments.add(
+                new Department(
+                        1,
+                        "Groente",
+                        1,
+                        groentes
+                ));
+
+        ArrayList<Integer> fruit  = new ArrayList<Integer>();
+        fruit.add(2);
+        departments.add(
+                new Department(
+                        2,
+                        "Fruit",
+                        2,
+                        fruit
+                ));
+
+        this.departments = departments;
     }
 
     public ArrayList<Department> get() {

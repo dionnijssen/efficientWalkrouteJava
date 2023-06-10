@@ -6,16 +6,24 @@ public class Department {
     private int id;
     private String name;
     private int order;
-    private ArrayList<Article> articles;
+    private ArrayList articleIds;
 
-    public Department(int id, String name, int order, ArrayList<Article> articles) {
+    public Department(int id, String name, int order, ArrayList articles) {
         this.id = id;
         this.name = name;
         this.order = order;
-        this.articles = articles;
+        this.articleIds = articles;
     }
 
     public int getId() {
         return this.id;
+    }
+
+    public int getOrder() {
+        return this.order;
+    }
+
+    public ArrayList getArticleIds() {
+        return this.articleIds;
     }
 }

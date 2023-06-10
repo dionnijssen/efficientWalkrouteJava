@@ -16,10 +16,12 @@ public class OrderController implements OrderControllerInterface {
     }
 
     public Order create() {
-        return new Order(
+        Order order = new Order(
                 ((this.orderRepo.get()).size() + 1),
                 LocalDate.now(),
                 new ArrayList<Orderrule>()
         );
+
+        return this.orderRepo.store(order);
     }
 }

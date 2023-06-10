@@ -11,6 +11,8 @@ public class RepositoryFactory implements RepositoryFactoryInterface {
     private ShoppinglistRepository shoppinglistRepository;
     private WalkRouteRepository walkRouteRepository;
 
+    private RuleRepository ruleRepository;
+
     public ArticleRepository getArticleRepository()
     {
         if (null == this.articleRepository) {
@@ -63,5 +65,14 @@ public class RepositoryFactory implements RepositoryFactoryInterface {
         }
 
         return this.walkRouteRepository;
+    }
+
+    public RuleRepository getRuleRepository()
+    {
+        if (null == this.ruleRepository) {
+            this.ruleRepository = new RuleRepository();
+        }
+
+        return this.ruleRepository;
     }
 }
