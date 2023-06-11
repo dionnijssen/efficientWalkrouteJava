@@ -4,14 +4,13 @@ import Logic.Models.Article;
 import Logic.Models.Orderrule;
 
 public class MaximumAmountRule extends BasicRule {
-    private int amount;
     private int maxAmount;
 
     @Override
     public void apply(Orderrule orderrule, Object... args) {
         this.maxAmount = (Integer) args[0];
 
-        if (orderrule.getAmount() < this.maxAmount) {
+        if (orderrule.getAmount() <= this.maxAmount) {
             this.applied = false;
             this.reason = "Success";
 
