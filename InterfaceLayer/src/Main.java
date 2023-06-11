@@ -26,7 +26,7 @@ public class Main {
 
     public void main() throws IOException, ParseException {
         this.repositoryFactory = new RepositoryFactory();
-        this.serviceFactory = new ServiceFactory(this.repositoryFactory);
+        this.serviceFactory = new ServiceFactory();
         this.controllerFactory = new ControllerFactory(this.repositoryFactory, this.serviceFactory);
         this.uiFactory = new UiFactory(this.controllerFactory, this.repositoryFactory, this.serviceFactory);
 

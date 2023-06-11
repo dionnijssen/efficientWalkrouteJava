@@ -19,20 +19,20 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
         departments.add(
                 new Department(
                         1,
-                        "Groente",
+                        "Fruit",
                         1,
                         groentes
                 ));
 
-        ArrayList<Integer> fruit = new ArrayList<Integer>();
-        fruit.add(2);
-        fruit.add(3);
+        ArrayList<Integer> drinks  = new ArrayList<Integer>();
+        drinks.add(2);
+        drinks.add(3);
         departments.add(
                 new Department(
                         2,
-                        "Fruit",
+                        "Drinks",
                         2,
-                        fruit
+                        drinks
                 ));
 
         this.departments = departments;
