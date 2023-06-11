@@ -1,51 +1,26 @@
 package Logic.Services;
 
 import DataLayer.ArticleRepository;
+import Logic.Helpers.RuleHelper;
 import Logic.Models.Order;
 import Logic.Models.Orderrule;
 import Logic.Models.Rule;
 import Logic.Models.Shoppinglist;
-import Logic.Rules.MaximumAmountRule;
-import Logic.Rules.MinimumAmountRule;
+import Logic.Rules.BasicRule;
 
 import java.util.ArrayList;
 
 public class CreateWalkRouteService {
-    private ArticleRepository articleRepo;
-
-    public CreateWalkRouteService(ArticleRepository articleRepo) {
-        this.articleRepo = articleRepo;
-    }
-
     public Boolean applyRules(ArrayList<Rule> activeRules, Shoppinglist shoppinglist) {
         Boolean success = true;
-        ArrayList appliedRules = new ArrayList();
         for (Rule rule : activeRules) {
-            //Todo refactor this into a mapper
-            switch (rule.getType()) {
-                case "min":
-                    MinimumAmountRule minimumAmountRule = new MinimumAmountRule(shoppinglist, this.articleRepo.show(rule.getArticleId()), rule.getAmount());
+            BasicRule basicRule = RuleHelper.getCorrectRule(rule.getType());
 
-                    minimumAmountRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()));
+            basicRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()), rule.getAmount());
 
-                    if (minimumAmountRule.hasBeenApplied()) {
-                        System.out.println(minimumAmountRule.getReason());
-                        success = false;
-                    }
-                    break;
-                case "max":
-                    MaximumAmountRule maximumAmountRule = new MaximumAmountRule(shoppinglist, this.articleRepo.show(rule.getArticleId()), rule.getAmount());
-
-                    maximumAmountRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()));
-
-                    if (maximumAmountRule.hasBeenApplied()) {
-                        System.out.println(maximumAmountRule.getReason());
-                        success = false;
-                    }
-
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid rule type");
+            if (basicRule.hasBeenApplied()) {
+                System.out.println(basicRule.getReason());
+                success = false;
             }
         }
 

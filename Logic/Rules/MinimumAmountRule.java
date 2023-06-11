@@ -2,19 +2,14 @@ package Logic.Rules;
 
 import Logic.Models.Article;
 import Logic.Models.Orderrule;
-import Logic.Models.Shoppinglist;
 
 public class MinimumAmountRule extends BasicRule {
     private int minimumAmount;
 
-    public MinimumAmountRule(Shoppinglist shoppingList, Article article, int minimumAmount) {
-        super(shoppingList, article);
-
-        this.minimumAmount = minimumAmount;
-    }
-
     @Override
-    public void apply(Orderrule orderrule) {
+    public void apply(Orderrule orderrule, Object... args) {
+        this.minimumAmount = (Integer) args[0];
+
         if (orderrule.getAmount() >= this.minimumAmount) {
             this.applied = false;
             this.reason = "Success";
@@ -23,14 +18,16 @@ public class MinimumAmountRule extends BasicRule {
         }
 
         this.applied = true;
-        this.setReason();
+
+        Article article = orderrule.getArticle();
+        this.setReason(article);
     }
 
     public boolean hasBeenApplied() {
         return this.applied;
     }
 
-    public void setReason() {
-        this.reason = "Minimum amount of " + this.article.getName() + " has to be " + this.minimumAmount;
+    public void setReason(Article article) {
+        this.reason = "Minimum amount of " + article.getName() + " has to be " + this.minimumAmount;
     }
 }

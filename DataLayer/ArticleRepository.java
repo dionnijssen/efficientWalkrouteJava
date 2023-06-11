@@ -14,22 +14,22 @@ public class ArticleRepository implements RepositoryInterface<Article> {
         articles.add(
                 new Article(
                         1,
-                        "Apple",
+                        "apple",
                         "Elstar Apple"
                 ));
 
         articles.add(
                 new Article(
                         2,
-                        "pear",
-                        "Pear"
+                        "cola",
+                        "Coca Cola"
                 ));
 
         articles.add(
                 new Article(
                         3,
-                        "Banana",
-                        "Banana"
+                        "fanta",
+                        "Fanta Orange"
                 ));
 
         this.articles = articles;

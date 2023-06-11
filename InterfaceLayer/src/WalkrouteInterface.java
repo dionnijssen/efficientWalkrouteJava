@@ -9,6 +9,7 @@ import Logic.UiFactory;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 public class WalkrouteInterface {
     private ControllerFactory controllerFactory;
@@ -34,6 +35,11 @@ public class WalkrouteInterface {
 
         shoppinglist = this.controllerFactory.getWalkrouteManager().createWalkRoute(shoppinglist);
 
+        if (shoppinglist.getWalkRouteId() == 0) {
+            System.out.println();
+            System.out.println("Failed to create walkroute");
+        }
+
         this.uiFactory.getShoppingListInterface().shoppingListOptions(shoppinglist);
     }
 
@@ -48,7 +54,19 @@ public class WalkrouteInterface {
 
         System.out.println("");
         System.out.println("Walkroute for shoppinglist " + shoppinglist.getId() + " on " + shoppinglist.getDate());
-        for (Article article : walkRoute.getWalkroute()) {
+
+        ArrayList<Article> articles = walkRoute.getWalkroute();
+
+        // Remove duplicated articles
+        for (int i = 0; i < articles.size(); i++) {
+            for (int j = i + 1; j < articles.size(); j++) {
+                if (articles.get(i).getId() == articles.get(j).getId()) {
+                    articles.remove(j);
+                }
+            }
+        }
+
+        for (Article article : articles) {
             int amount = this.controllerFactory.getWalkrouteManager().getShoppingListArticleAmount(shoppinglist, article);
 
             System.out.println(article.getName() + " " + article.getDescription() + " " + amount);
