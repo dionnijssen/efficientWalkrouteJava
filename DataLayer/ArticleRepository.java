@@ -49,33 +49,4 @@ public class ArticleRepository {
 
         return null;
     }
-
-    public Article store(Article article) {
-        this.articles.add(article);
-        return article;
-    }
-
-    public Article update(Article article) {
-        for (int i = 0; i < this.articles.size(); i++) {
-            if (articles.get(i).getId() == article.getId()) {
-                articles.set(i, article);
-
-                return article;
-            }
-        }
-
-        return null;
-    }
-
-    public boolean delete(Article article) {
-        for (int i = 0; i < this.articles.size(); i++) {
-            if (articles.get(i).getId() == article.getId()) {
-                articles.remove(i);
-
-                return true;
-            }
-        }
-
-        return false;
-    }
 }

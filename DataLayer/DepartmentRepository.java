@@ -50,33 +50,4 @@ public class DepartmentRepository {
 
         return null;
     }
-
-    public Department store(Department department) {
-        this.departments.add(department);
-        return department;
-    }
-
-    public Department update(Department department) {
-        for (int i = 0; i < this.departments.size(); i++) {
-            if (departments.get(i).getId() == department.getId()) {
-                departments.set(i, department);
-
-                return department;
-            }
-        }
-
-        return null;
-    }
-
-    public boolean delete(Department department) {
-        for (int i = 0; i < this.departments.size(); i++) {
-            if (departments.get(i).getId() == department.getId()) {
-                departments.remove(i);
-
-                return true;
-            }
-        }
-
-        return false;
-    }
 }

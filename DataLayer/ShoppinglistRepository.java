@@ -43,8 +43,4 @@ public class ShoppinglistRepository {
 
         return null;
     }
-
-    public boolean delete(Shoppinglist shoppinglist) {
-        return this.shoppinglists.remove(shoppinglist);
-    }
 }

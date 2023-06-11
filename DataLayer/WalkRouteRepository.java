@@ -29,28 +29,4 @@ public class WalkRouteRepository {
         this.walkRoutes.add(walkRoute);
         return walkRoute;
     }
-
-    public WalkRoute update(WalkRoute walkRoute) {
-        for (int i = 0; i < this.walkRoutes.size(); i++) {
-            if (walkRoutes.get(i).getId() == walkRoute.getId()) {
-                walkRoutes.set(i, walkRoute);
-
-                return walkRoute;
-            }
-        }
-
-        return null;
-    }
-
-    public boolean delete(WalkRoute walkRoute) {
-        for (int i = 0; i < this.walkRoutes.size(); i++) {
-            if (walkRoutes.get(i).getId() == walkRoute.getId()) {
-                walkRoutes.remove(i);
-
-                return true;
-            }
-        }
-
-        return false;
-    }
 }

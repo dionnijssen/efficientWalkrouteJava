@@ -30,26 +30,4 @@ public class OrderRepository {
 
         return order;
     }
-
-    public Order update(Order order) {
-        for (int i = 0; i < this.orders.size(); i++) {
-            if (this.orders.get(i).getId() == order.getId()) {
-                this.orders.set(i, order);
-                return order;
-            }
-        }
-
-        return null;
-    }
-
-    public boolean delete(Order order) {
-        for (int i = 0; i < this.orders.size(); i++) {
-            if (this.orders.get(i).getId() == order.getId()) {
-                this.orders.remove(i);
-                return true;
-            }
-        }
-
-        return false;
-    }
 }
