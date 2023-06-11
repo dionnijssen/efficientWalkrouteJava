@@ -1,16 +1,13 @@
 package Logic;
 
 import Logic.Controllers.*;
-import Logic.Interfaces.Logic.*;
 import Logic.Interfaces.Logic.Controllers.*;
 
-public class ControllerFactory implements ControllerFactoryInterface {
+public class ControllerFactory {
     private RepositoryFactory repositoryFactory;
     private ArticleControllerInterface articleController;
-    private DepartmentControllerInterface departmentController;
     private OrderManagerInterface orderManager;
     private OrderControllerInterface orderController;
-    private OrderruleControllerInterface orderruleController;
     private ShoppinglistControllerInterface shoppinglistController;
     private WalkRouteControllerInterface walkRouteController;
 
@@ -34,28 +31,12 @@ public class ControllerFactory implements ControllerFactoryInterface {
         return this.articleController;
     }
 
-    public DepartmentControllerInterface getDepartmentController() {
-        if (null == this.departmentController) {
-            this.departmentController = new DepartmentController(this.repositoryFactory.getDepartmentRepository());
-        }
-
-        return this.departmentController;
-    }
-
     public OrderControllerInterface getOrderController() {
         if (null == this.orderController) {
             this.orderController = new OrderController(this.repositoryFactory.getOrderRepository());
         }
 
         return this.orderController;
-    }
-
-    public OrderruleControllerInterface getOrderruleController() {
-        if (null == this.orderruleController) {
-            this.orderruleController = new OrderruleController(this.repositoryFactory.getOrderruleRepository());
-        }
-
-        return this.orderruleController;
     }
 
     public ShoppinglistControllerInterface getShoppinglistController() {
@@ -77,8 +58,7 @@ public class ControllerFactory implements ControllerFactoryInterface {
     public OrderManagerInterface getOrderManager() {
         if (null == this.orderManager) {
             this.orderManager = new OrderManager(
-                    this.repositoryFactory.getShoppinglistRepository(),
-                    this.repositoryFactory.getArticleRepository()
+                    this.repositoryFactory.getShoppinglistRepository()
             );
         }
 
@@ -92,7 +72,9 @@ public class ControllerFactory implements ControllerFactoryInterface {
                     this.repositoryFactory.getRuleRepository(),
                     this.repositoryFactory.getArticleRepository(),
                     this.serviceFactory.getCreateWalkRouteService(),
-                    this.repositoryFactory.getDepartmentRepository()
+                    this.repositoryFactory.getDepartmentRepository(),
+                    (WalkRouteController) this.getWalkRouteController(),
+                    (ShoppinglistController) this.getShoppinglistController()
             );
         }
 

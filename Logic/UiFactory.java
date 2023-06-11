@@ -8,7 +8,6 @@ import src.WalkrouteInterface;
 public class UiFactory {
     private ControllerFactory controllerFactory;
     private RepositoryFactory repositoryFactory;
-    private ServiceFactory serviceFactory;
 
     private HomeInterface homeInterface;
     private OrderInterface orderInterface;
@@ -17,12 +16,10 @@ public class UiFactory {
 
     public UiFactory(
             ControllerFactory controllerFactory,
-            RepositoryFactory repositoryFactory,
-            ServiceFactory serviceFactory
+            RepositoryFactory repositoryFactory
     ) {
         this.controllerFactory = controllerFactory;
         this.repositoryFactory = repositoryFactory;
-        this.serviceFactory = serviceFactory;
     }
 
     public HomeInterface getHomeInterface() {

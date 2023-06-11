@@ -21,19 +21,4 @@ public class ArticleController implements ArticleControllerInterface {
     public Article show(int id) {
         return this.articleRepo.show(id);
     }
-
-    //I think this should receive parameters as well. because the cli class should pass through to this. This should arrange data and pass to Repo.
-    public Article create(Article createArticle) {
-//        return this.articleRepo.create(createArticle);
-        return null;
-    }
-
-    public Article update(Article article) {
-//        return this.articleRepo.update(article);
-        return null;
-    }
-
-    public boolean delete(Article article) {
-        return this.articleRepo.delete(article);
-    }
 }

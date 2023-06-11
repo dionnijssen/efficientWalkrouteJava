@@ -1,11 +1,10 @@
 package DataLayer;
 
-import Logic.Interfaces.Data.RepositoryInterface;
 import Logic.Models.Article;
 
 import java.util.ArrayList;
 
-public class ArticleRepository implements RepositoryInterface<Article> {
+public class ArticleRepository {
     private ArrayList<Article> articles;
 
     public ArticleRepository() {
@@ -35,48 +34,19 @@ public class ArticleRepository implements RepositoryInterface<Article> {
         this.articles = articles;
     }
 
-    public ArrayList<Article> get(){
+    public ArrayList<Article> get() {
         return this.articles;
     }
 
-    public Article show(int articleId){
+    public Article show(int articleId) {
         ArrayList<Article> articles = this.get();
 
         for (int i = 0; i < articles.size(); i++) {
-            if (articles.get(i).getId() == articleId){
+            if (articles.get(i).getId() == articleId) {
                 return articles.get(i);
             }
         }
 
         return null;
-    }
-
-    public Article store(Article article) {
-        this.articles.add(article);
-        return article;
-    }
-
-    public Article update(Article article){
-        for (int i = 0; i < this.articles.size(); i++) {
-            if (articles.get(i).getId() == article.getId()){
-                articles.set(i, article);
-
-                return article;
-            }
-        }
-
-        return null;
-    }
-
-    public boolean delete(Article article){
-        for (int i = 0; i < this.articles.size(); i++) {
-            if (articles.get(i).getId() == article.getId()){
-                articles.remove(i);
-
-                return true;
-            }
-        }
-
-        return false;
     }
 }

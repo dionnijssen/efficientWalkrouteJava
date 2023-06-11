@@ -15,10 +15,6 @@ public class WalkRoute {
         return this.id;
     }
 
-    public ArrayList getWalkRoute() {
-        return this.walk_route;
-    }
-
     public void addArticle(Article article) {
         this.walk_route.add(article);
     }

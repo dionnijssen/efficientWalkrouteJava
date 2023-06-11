@@ -1,11 +1,10 @@
 package DataLayer;
 
-import Logic.Interfaces.Data.RepositoryInterface;
 import Logic.Models.WalkRoute;
 
 import java.util.ArrayList;
 
-public class WalkRouteRepository implements RepositoryInterface<WalkRoute> {
+public class WalkRouteRepository {
     private ArrayList<WalkRoute> walkRoutes;
 
     public WalkRouteRepository() {
@@ -29,29 +28,5 @@ public class WalkRouteRepository implements RepositoryInterface<WalkRoute> {
     public WalkRoute store(WalkRoute walkRoute) {
         this.walkRoutes.add(walkRoute);
         return walkRoute;
-    }
-
-    public WalkRoute update(WalkRoute walkRoute) {
-        for (int i = 0; i < this.walkRoutes.size(); i++) {
-            if (walkRoutes.get(i).getId() == walkRoute.getId()) {
-                walkRoutes.set(i, walkRoute);
-
-                return walkRoute;
-            }
-        }
-
-        return null;
-    }
-
-    public boolean delete(WalkRoute walkRoute) {
-        for (int i = 0; i < this.walkRoutes.size(); i++) {
-            if (walkRoutes.get(i).getId() == walkRoute.getId()) {
-                walkRoutes.remove(i);
-
-                return true;
-            }
-        }
-
-        return false;
     }
 }

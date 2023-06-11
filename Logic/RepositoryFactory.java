@@ -1,20 +1,17 @@
 package Logic;
 
 import DataLayer.*;
-import Logic.Interfaces.Logic.RepositoryFactoryInterface;
 
-public class RepositoryFactory implements RepositoryFactoryInterface {
+public class RepositoryFactory {
     private ArticleRepository articleRepository;
     private DepartmentRepository departmentRepository;
     private OrderRepository orderRepository;
-    private OrderruleRepository orderruleRepository;
     private ShoppinglistRepository shoppinglistRepository;
     private WalkRouteRepository walkRouteRepository;
 
     private RuleRepository ruleRepository;
 
-    public ArticleRepository getArticleRepository()
-    {
+    public ArticleRepository getArticleRepository() {
         if (null == this.articleRepository) {
             this.articleRepository = new ArticleRepository();
         }
@@ -22,8 +19,7 @@ public class RepositoryFactory implements RepositoryFactoryInterface {
         return this.articleRepository;
     }
 
-    public DepartmentRepository getDepartmentRepository()
-    {
+    public DepartmentRepository getDepartmentRepository() {
         if (null == this.departmentRepository) {
             this.departmentRepository = new DepartmentRepository();
         }
@@ -31,8 +27,7 @@ public class RepositoryFactory implements RepositoryFactoryInterface {
         return this.departmentRepository;
     }
 
-    public OrderRepository getOrderRepository()
-    {
+    public OrderRepository getOrderRepository() {
         if (null == this.orderRepository) {
             this.orderRepository = new OrderRepository();
         }
@@ -40,17 +35,7 @@ public class RepositoryFactory implements RepositoryFactoryInterface {
         return this.orderRepository;
     }
 
-    public OrderruleRepository getOrderruleRepository()
-    {
-        if (null == this.orderruleRepository) {
-            this.orderruleRepository = new OrderruleRepository();
-        }
-
-        return this.orderruleRepository;
-    }
-
-    public ShoppinglistRepository getShoppinglistRepository()
-    {
+    public ShoppinglistRepository getShoppinglistRepository() {
         if (null == this.shoppinglistRepository) {
             this.shoppinglistRepository = new ShoppinglistRepository();
         }
@@ -58,8 +43,7 @@ public class RepositoryFactory implements RepositoryFactoryInterface {
         return this.shoppinglistRepository;
     }
 
-    public WalkRouteRepository getWalkRouteRepository()
-    {
+    public WalkRouteRepository getWalkRouteRepository() {
         if (null == this.walkRouteRepository) {
             this.walkRouteRepository = new WalkRouteRepository();
         }
@@ -67,8 +51,7 @@ public class RepositoryFactory implements RepositoryFactoryInterface {
         return this.walkRouteRepository;
     }
 
-    public RuleRepository getRuleRepository()
-    {
+    public RuleRepository getRuleRepository() {
         if (null == this.ruleRepository) {
             this.ruleRepository = new RuleRepository();
         }

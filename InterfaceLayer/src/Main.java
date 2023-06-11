@@ -28,7 +28,7 @@ public class Main {
         this.repositoryFactory = new RepositoryFactory();
         this.serviceFactory = new ServiceFactory();
         this.controllerFactory = new ControllerFactory(this.repositoryFactory, this.serviceFactory);
-        this.uiFactory = new UiFactory(this.controllerFactory, this.repositoryFactory, this.serviceFactory);
+        this.uiFactory = new UiFactory(this.controllerFactory, this.repositoryFactory);
 
         this.uiFactory.getHomeInterface().home();
     }
