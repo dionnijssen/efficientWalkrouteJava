@@ -37,13 +37,11 @@ public class WalkRouteManager {
             return this.calculateWalkroute(shoppinglist);
         }
 
-        System.out.println("Failed to create walkroute");
         return shoppinglist;
     }
 
     private Shoppinglist calculateWalkroute(Shoppinglist shoppinglist) {
         ArrayList articles = this.getShoppinglistArticles(shoppinglist);
-        ArticleRepository articleRepo = new ArticleRepository();
         // Sort Articles by department order
         articles.sort((article1, article2) -> {
             Department department1 = this.getDepartmentForArticle((int) article1);
@@ -56,7 +54,7 @@ public class WalkRouteManager {
 
         // Add articles to walkroute
         for (Object article : articles) {
-            Article addArticle = articleRepo.show((Integer) article);
+            Article addArticle = this.articleRepo.show((Integer) article);
             walkrouteOrderedArticles.add(addArticle);
         }
 

@@ -34,6 +34,11 @@ public class WalkrouteInterface {
 
         shoppinglist = this.controllerFactory.getWalkrouteManager().createWalkRoute(shoppinglist);
 
+        if (shoppinglist.getWalkRouteId() == 0) {
+            System.out.println();
+            System.out.println("Failed to create walkroute");
+        }
+
         this.uiFactory.getShoppingListInterface().shoppingListOptions(shoppinglist);
     }
 
