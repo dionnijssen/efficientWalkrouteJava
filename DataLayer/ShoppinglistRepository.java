@@ -49,19 +49,4 @@ public class ShoppinglistRepository implements RepositoryInterface<Shoppinglist>
     public boolean delete(Shoppinglist shoppinglist) {
         return this.shoppinglists.remove(shoppinglist);
     }
-
-    public Order updateOrder(Order order) {
-        for (Shoppinglist shoppinglist : this.shoppinglists) {
-            for (Order order1 : shoppinglist.getOrders()) {
-                if (order1.getId() == order.getId()) {
-                    this.shoppinglists.get(
-                            this.shoppinglists.indexOf(shoppinglist))
-                            .getOrders().set(shoppinglist.getOrders().indexOf(order1), order);
-                    return order1;
-                }
-            }
-        }
-
-        return null;
-    }
 }

@@ -35,15 +35,15 @@ public class ArticleRepository implements RepositoryInterface<Article> {
         this.articles = articles;
     }
 
-    public ArrayList<Article> get(){
+    public ArrayList<Article> get() {
         return this.articles;
     }
 
-    public Article show(int articleId){
+    public Article show(int articleId) {
         ArrayList<Article> articles = this.get();
 
         for (int i = 0; i < articles.size(); i++) {
-            if (articles.get(i).getId() == articleId){
+            if (articles.get(i).getId() == articleId) {
                 return articles.get(i);
             }
         }
@@ -56,9 +56,9 @@ public class ArticleRepository implements RepositoryInterface<Article> {
         return article;
     }
 
-    public Article update(Article article){
+    public Article update(Article article) {
         for (int i = 0; i < this.articles.size(); i++) {
-            if (articles.get(i).getId() == article.getId()){
+            if (articles.get(i).getId() == article.getId()) {
                 articles.set(i, article);
 
                 return article;
@@ -68,9 +68,9 @@ public class ArticleRepository implements RepositoryInterface<Article> {
         return null;
     }
 
-    public boolean delete(Article article){
+    public boolean delete(Article article) {
         for (int i = 0; i < this.articles.size(); i++) {
-            if (articles.get(i).getId() == article.getId()){
+            if (articles.get(i).getId() == article.getId()) {
                 articles.remove(i);
 
                 return true;

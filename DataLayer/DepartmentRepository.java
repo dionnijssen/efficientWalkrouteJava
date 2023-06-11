@@ -7,12 +7,13 @@ import java.util.ArrayList;
 
 public class DepartmentRepository implements RepositoryInterface<Department> {
     private ArrayList<Department> departments;
+
     public DepartmentRepository() {
         this.departments = new ArrayList<Department>();
 
         ArrayList<Department> departments = new ArrayList<>();
 
-        ArrayList<Integer> groentes  = new ArrayList<Integer>();
+        ArrayList<Integer> groentes = new ArrayList<Integer>();
         groentes.add(1);
 
         departments.add(
@@ -23,7 +24,7 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
                         groentes
                 ));
 
-        ArrayList<Integer> fruit  = new ArrayList<Integer>();
+        ArrayList<Integer> fruit = new ArrayList<Integer>();
         fruit.add(2);
         fruit.add(3);
         departments.add(
@@ -41,8 +42,8 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
         return this.departments;
     }
 
-    public Department show(int id){
-        for (Department department :  (get())) {
+    public Department show(int id) {
+        for (Department department : (get())) {
             if (department.getId() == id) {
                 return department;
             }
@@ -51,14 +52,14 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
         return null;
     }
 
-    public Department store(Department department){
+    public Department store(Department department) {
         this.departments.add(department);
         return department;
     }
 
-    public Department update(Department department){
+    public Department update(Department department) {
         for (int i = 0; i < this.departments.size(); i++) {
-            if (departments.get(i).getId() == department.getId()){
+            if (departments.get(i).getId() == department.getId()) {
                 departments.set(i, department);
 
                 return department;
@@ -68,9 +69,9 @@ public class DepartmentRepository implements RepositoryInterface<Department> {
         return null;
     }
 
-    public boolean delete(Department department){
+    public boolean delete(Department department) {
         for (int i = 0; i < this.departments.size(); i++) {
-            if (departments.get(i).getId() == department.getId()){
+            if (departments.get(i).getId() == department.getId()) {
                 departments.remove(i);
 
                 return true;

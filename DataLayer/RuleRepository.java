@@ -1,12 +1,10 @@
 package DataLayer;
 
-import Logic.Interfaces.Data.RepositoryInterface;
 import Logic.Models.Rule;
-import Logic.Models.WalkRoute;
 
 import java.util.ArrayList;
 
-public class RuleRepository  {
+public class RuleRepository {
     private ArrayList<Rule> rules;
 
     public RuleRepository() {

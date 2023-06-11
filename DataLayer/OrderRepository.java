@@ -10,30 +10,6 @@ public class OrderRepository implements RepositoryInterface<Order> {
 
     public OrderRepository() {
         this.orders = new ArrayList<Order>();
-
-//        ArrayList<Order> orders = new ArrayList<>();
-//        ArrayList<Orderrule> orderrules = new ArrayList<Orderrule>();
-//
-//        orders.add(
-//                new Order(
-//                        1,
-//                        LocalDate.now(),
-//                        orderrules
-//                ));
-//
-//        orders.add(
-//                new Order(
-//                        2,
-//                        LocalDate.now(),
-//                        orderrules
-//                ));
-//
-//        orders.add(
-//                new Order(
-//                        3,
-//                        LocalDate.now(),
-//                        orderrules
-//                ));
     }
 
     public ArrayList<Order> get() {
