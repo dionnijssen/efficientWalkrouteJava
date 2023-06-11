@@ -92,16 +92,21 @@ public class WalkRouteManager {
 
     public int getShoppingListArticleAmount(Shoppinglist shoppinglist, Article article) {
         int amount = 0;
+        ArrayList amounts = new ArrayList();
 
         for (Order order : shoppinglist.getOrders()) {
             for (Orderrule orderrule : order.getOrderrules()) {
                 if (orderrule.getArticle().getId() == article.getId()) {
-                    return orderrule.getAmount();
+                    amounts.add(orderrule.getAmount());
                 }
             }
         }
 
-        throw new IllegalArgumentException("Article not found in shoppinglist");
+        for (Object amountObject : amounts) {
+            amount += (int) amountObject;
+        }
+
+        return amount;
     }
 
     private ArrayList getRulesForShoppinglistArticles(ArrayList articleIds) {
