@@ -16,10 +16,7 @@ public class OrderInterface {
     private ControllerFactory controllerFactory;
     private UiFactory uiFactory;
 
-    public OrderInterface(
-            ControllerFactory controllerFactory,
-            UiFactory uiFactory
-    ) {
+    public OrderInterface(ControllerFactory controllerFactory, UiFactory uiFactory) {
         this.controllerFactory = controllerFactory;
         this.uiFactory = uiFactory;
     }
@@ -130,12 +127,10 @@ public class OrderInterface {
     public void createOrder(Shoppinglist shoppinglist) throws IOException, ParseException {
         Order order = this.controllerFactory.getOrderController().create();
 
-        // Add articles to order
         System.out.println("");
         System.out.println("Choose articles to add to order.");
         Order updatedOrder = this.addArticlesToOrder(order);
 
-        // Add order to shoppinglist
         System.out.println("");
         System.out.println("Adding order to shoppinglist...");
 
@@ -144,7 +139,6 @@ public class OrderInterface {
         System.out.println("");
         System.out.println("Order added to shoppinglist.");
 
-        // Back to shoppinglist Options
         this.uiFactory.getShoppingListInterface().shoppingListOptions(updatedShoppingList);
     }
 
@@ -169,12 +163,12 @@ public class OrderInterface {
             System.out.println("Amount?");
             int amount = Helpers.readInt();
 
-            if (amount == 0) {
+            if (amount == 0 || amount < 0) {
                 System.out.println("Amount cannot be 0");
                 continue;
             }
             boolean articleExists = false;
-            // Check if article is already in orderrules
+
             for (Orderrule rule : orderrules) {
                 if (rule.getArticle().getId() == article.getId()) {
                     rule.setAmount(rule.getAmount() + amount);

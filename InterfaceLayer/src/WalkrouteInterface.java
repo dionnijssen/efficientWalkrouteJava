@@ -15,11 +15,7 @@ public class WalkrouteInterface {
     private RepositoryFactory repositoryFactory;
     private UiFactory uiFactory;
 
-    public WalkrouteInterface(
-            ControllerFactory controllerFactory,
-            RepositoryFactory repositoryFactory,
-            UiFactory uiFactory
-    ) {
+    public WalkrouteInterface(ControllerFactory controllerFactory, RepositoryFactory repositoryFactory, UiFactory uiFactory) {
         this.controllerFactory = controllerFactory;
         this.repositoryFactory = repositoryFactory;
         this.uiFactory = uiFactory;

@@ -13,10 +13,7 @@ public class ShoppingListInterface {
     private ControllerFactory controllerFactory;
     private UiFactory uiFactory;
 
-    public ShoppingListInterface(
-            ControllerFactory controllerFactory,
-            UiFactory uiFactory
-    ) {
+    public ShoppingListInterface(ControllerFactory controllerFactory, UiFactory uiFactory) {
         this.controllerFactory = controllerFactory;
         this.uiFactory = uiFactory;
     }
