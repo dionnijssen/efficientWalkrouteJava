@@ -28,6 +28,6 @@ public class MaximumAmountRule extends BasicRule {
     }
 
     public void setReason(Article article) {
-        this.reason = "Max amount of "+ article.getName() +" is " + this.maxAmount;
+        this.reason = "Max amount of " + article.getName() + " is " + this.maxAmount;
     }
 }

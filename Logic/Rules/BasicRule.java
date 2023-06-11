@@ -4,7 +4,6 @@ import Logic.Models.Article;
 import Logic.Models.Orderrule;
 
 abstract public class BasicRule {
-    protected int amount;
     protected boolean applied;
     protected String reason;
 
