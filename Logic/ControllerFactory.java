@@ -1,7 +1,7 @@
 package Logic;
 
 import Logic.Controllers.*;
-import Logic.Interfaces.Logic.*;
+import Logic.Interfaces.Logic.ControllerFactoryInterface;
 import Logic.Interfaces.Logic.Controllers.*;
 
 public class ControllerFactory implements ControllerFactoryInterface {
