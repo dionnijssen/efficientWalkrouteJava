@@ -1,11 +1,10 @@
 package DataLayer;
 
-import Logic.Interfaces.Data.RepositoryInterface;
 import Logic.Models.Article;
 
 import java.util.ArrayList;
 
-public class ArticleRepository implements RepositoryInterface<Article> {
+public class ArticleRepository {
     private ArrayList<Article> articles;
 
     public ArticleRepository() {

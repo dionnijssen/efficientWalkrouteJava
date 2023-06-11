@@ -1,11 +1,10 @@
 package DataLayer;
 
-import Logic.Interfaces.Data.RepositoryInterface;
 import Logic.Models.WalkRoute;
 
 import java.util.ArrayList;
 
-public class WalkRouteRepository implements RepositoryInterface<WalkRoute> {
+public class WalkRouteRepository {
     private ArrayList<WalkRoute> walkRoutes;
 
     public WalkRouteRepository() {

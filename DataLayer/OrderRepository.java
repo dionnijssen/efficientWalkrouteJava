@@ -1,11 +1,10 @@
 package DataLayer;
 
-import Logic.Interfaces.Data.RepositoryInterface;
 import Logic.Models.Order;
 
 import java.util.ArrayList;
 
-public class OrderRepository implements RepositoryInterface<Order> {
+public class OrderRepository {
     private final ArrayList<Order> orders;
 
     public OrderRepository() {

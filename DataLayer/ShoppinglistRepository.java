@@ -1,12 +1,10 @@
 package DataLayer;
 
-import Logic.Interfaces.Data.RepositoryInterface;
-import Logic.Models.Order;
 import Logic.Models.Shoppinglist;
 
 import java.util.ArrayList;
 
-public class ShoppinglistRepository implements RepositoryInterface<Shoppinglist> {
+public class ShoppinglistRepository {
 
     private ArrayList<Shoppinglist> shoppinglists;
 
