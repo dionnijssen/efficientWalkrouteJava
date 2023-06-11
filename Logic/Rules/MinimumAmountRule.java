@@ -1,26 +1,16 @@
 package Logic.Rules;
 
-import DataLayer.OrderruleRepository;
-import DataLayer.ShoppinglistRepository;
-import Logic.Controllers.OrderManager;
 import Logic.Models.Article;
-import Logic.Models.Order;
 import Logic.Models.Orderrule;
-import Logic.Models.Shoppinglist;
 
 public class MinimumAmountRule extends BasicRule {
-    private int amount;
     private int minimumAmount;
 
-    public MinimumAmountRule(Shoppinglist shoppingList, Article article, int minimumAmount) {
-        super(shoppingList, article);
-
-        this.minimumAmount = minimumAmount;
-    }
-
     @Override
-    public void apply(Orderrule orderrule) {
-        if (orderrule.getAmount() > this.minimumAmount) {
+    public void apply(Orderrule orderrule, Object... args) {
+        this.minimumAmount = (Integer) args[0];
+
+        if (orderrule.getAmount() >= this.minimumAmount) {
             this.applied = false;
             this.reason = "Success";
 
@@ -28,14 +18,16 @@ public class MinimumAmountRule extends BasicRule {
         }
 
         this.applied = true;
-        this.setReason();
+
+        Article article = orderrule.getArticle();
+        this.setReason(article);
     }
 
     public boolean hasBeenApplied() {
         return this.applied;
     }
 
-    public void setReason() {
-        this.reason = "Minimum amount of "+ this.article.getName() +" has to be " + this.minimumAmount;
+    public void setReason(Article article) {
+        this.reason = "Minimum amount of " + article.getName() + " has to be " + this.minimumAmount;
     }
 }

@@ -11,22 +11,15 @@ import Logic.Rules.MinimumAmountRule;
 import java.util.ArrayList;
 
 public class CreateWalkRouteService {
-    private ArticleRepository articleRepo;
-
-    public CreateWalkRouteService(ArticleRepository articleRepo) {
-        this.articleRepo = articleRepo;
-    }
-
     public Boolean applyRules(ArrayList<Rule> activeRules, Shoppinglist shoppinglist) {
         Boolean success = true;
-        ArrayList appliedRules = new ArrayList();
         for (Rule rule : activeRules) {
             //Todo refactor this into a mapper
             switch (rule.getType()) {
                 case "min":
-                    MinimumAmountRule minimumAmountRule = new MinimumAmountRule(shoppinglist, this.articleRepo.show(rule.getArticleId()), rule.getAmount());
+                    MinimumAmountRule minimumAmountRule = new MinimumAmountRule();
 
-                    minimumAmountRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()));
+                    minimumAmountRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()), rule.getAmount());
 
                     if (minimumAmountRule.hasBeenApplied()) {
                         System.out.println(minimumAmountRule.getReason());
@@ -34,9 +27,9 @@ public class CreateWalkRouteService {
                     }
                     break;
                 case "max":
-                    MaximumAmountRule maximumAmountRule = new MaximumAmountRule(shoppinglist, this.articleRepo.show(rule.getArticleId()), rule.getAmount());
+                    MaximumAmountRule maximumAmountRule = new MaximumAmountRule();
 
-                    maximumAmountRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()));
+                    maximumAmountRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()), rule.getAmount());
 
                     if (maximumAmountRule.hasBeenApplied()) {
                         System.out.println(maximumAmountRule.getReason());
