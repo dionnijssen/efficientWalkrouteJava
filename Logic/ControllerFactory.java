@@ -1,10 +1,9 @@
 package Logic;
 
 import Logic.Controllers.*;
-import Logic.Interfaces.Logic.ControllerFactoryInterface;
 import Logic.Interfaces.Logic.Controllers.*;
 
-public class ControllerFactory implements ControllerFactoryInterface {
+public class ControllerFactory {
     private RepositoryFactory repositoryFactory;
     private ArticleControllerInterface articleController;
     private OrderManagerInterface orderManager;
