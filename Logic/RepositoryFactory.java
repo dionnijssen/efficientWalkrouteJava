@@ -7,7 +7,6 @@ public class RepositoryFactory implements RepositoryFactoryInterface {
     private ArticleRepository articleRepository;
     private DepartmentRepository departmentRepository;
     private OrderRepository orderRepository;
-    private OrderruleRepository orderruleRepository;
     private ShoppinglistRepository shoppinglistRepository;
     private WalkRouteRepository walkRouteRepository;
 
@@ -38,15 +37,6 @@ public class RepositoryFactory implements RepositoryFactoryInterface {
         }
 
         return this.orderRepository;
-    }
-
-    public OrderruleRepository getOrderruleRepository()
-    {
-        if (null == this.orderruleRepository) {
-            this.orderruleRepository = new OrderruleRepository();
-        }
-
-        return this.orderruleRepository;
     }
 
     public ShoppinglistRepository getShoppinglistRepository()

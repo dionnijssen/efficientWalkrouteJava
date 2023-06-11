@@ -3,11 +3,7 @@ package Logic.Helpers;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.security.MessageDigest;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Helpers {
 

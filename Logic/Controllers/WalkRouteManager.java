@@ -12,19 +12,25 @@ public class WalkRouteManager {
     ArticleRepository articleRepo;
     CreateWalkRouteService createWalkRouteService;
     DepartmentRepository departmentRepo;
+    WalkRouteController walkrouteController;
+    ShoppinglistController shoppinglistController;
 
     public WalkRouteManager(
             WalkRouteRepository walkRouteRepository,
             RuleRepository ruleRepository,
             ArticleRepository articleRepository,
             CreateWalkRouteService createWalkRouteService,
-            DepartmentRepository departmentRepository
+            DepartmentRepository departmentRepository,
+            WalkRouteController walkrouteController,
+            ShoppinglistController shoppinglistController
     ) {
         this.walkRouteRepo = walkRouteRepository;
         this.ruleRepo = ruleRepository;
         this.articleRepo = articleRepository;
         this.createWalkRouteService = createWalkRouteService;
         this.departmentRepo = departmentRepository;
+        this.walkrouteController = walkrouteController;
+        this.shoppinglistController = shoppinglistController;
     }
 
     public Shoppinglist createWalkRoute(Shoppinglist shoppinglist) {
@@ -42,7 +48,7 @@ public class WalkRouteManager {
 
     private Shoppinglist calculateWalkroute(Shoppinglist shoppinglist) {
         ArrayList articles = this.getShoppinglistArticles(shoppinglist);
-        // Sort Articles by department order
+
         articles.sort((article1, article2) -> {
             Department department1 = this.getDepartmentForArticle((int) article1);
             Department department2 = this.getDepartmentForArticle((int) article2);
@@ -52,16 +58,15 @@ public class WalkRouteManager {
 
         ArrayList<Article> walkrouteOrderedArticles = new ArrayList<Article>();
 
-        // Add articles to walkroute
         for (Object article : articles) {
             Article addArticle = this.articleRepo.show((Integer) article);
             walkrouteOrderedArticles.add(addArticle);
         }
 
-        WalkRoute walkRoute = new WalkRouteController(this.walkRouteRepo).create(walkrouteOrderedArticles);
+        WalkRoute walkRoute = this.walkrouteController.create(walkrouteOrderedArticles);
 
         shoppinglist.setWalkRouteId(walkRoute.getId());
-        new ShoppinglistController(new ShoppinglistRepository()).update(shoppinglist);
+        this.shoppinglistController.update(shoppinglist);
 
         return shoppinglist;
     }

@@ -9,8 +9,6 @@ public interface RepositoryFactoryInterface {
 
     OrderRepository getOrderRepository();
 
-    OrderruleRepository getOrderruleRepository();
-
     ShoppinglistRepository getShoppinglistRepository();
 
     WalkRouteRepository getWalkRouteRepository();
