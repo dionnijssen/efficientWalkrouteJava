@@ -2,7 +2,7 @@ package Logic.Controllers;
 
 import DataLayer.*;
 import Logic.Models.*;
-import Logic.Services.CreateWalkRouteService;
+import Logic.Services.RuleService;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ public class WalkRouteManager {
     WalkRouteRepository walkRouteRepo;
     RuleRepository ruleRepo;
     ArticleRepository articleRepo;
-    CreateWalkRouteService createWalkRouteService;
+    RuleService ruleService;
     DepartmentRepository departmentRepo;
     WalkRouteController walkrouteController;
     ShoppinglistController shoppinglistController;
@@ -19,7 +19,7 @@ public class WalkRouteManager {
             WalkRouteRepository walkRouteRepository,
             RuleRepository ruleRepository,
             ArticleRepository articleRepository,
-            CreateWalkRouteService createWalkRouteService,
+            RuleService ruleService,
             DepartmentRepository departmentRepository,
             WalkRouteController walkrouteController,
             ShoppinglistController shoppinglistController
@@ -27,7 +27,7 @@ public class WalkRouteManager {
         this.walkRouteRepo = walkRouteRepository;
         this.ruleRepo = ruleRepository;
         this.articleRepo = articleRepository;
-        this.createWalkRouteService = createWalkRouteService;
+        this.ruleService = ruleService;
         this.departmentRepo = departmentRepository;
         this.walkrouteController = walkrouteController;
         this.shoppinglistController = shoppinglistController;
@@ -37,7 +37,7 @@ public class WalkRouteManager {
         ArrayList articleIds = this.getShoppinglistArticles(shoppinglist);
         ArrayList<Rule> activeRules = this.getRulesForShoppinglistArticles(articleIds);
 
-        Boolean success = this.createWalkRouteService.applyRules(activeRules, shoppinglist);
+        Boolean success = this.ruleService.applyRules(activeRules, shoppinglist);
 
         if (success) {
             return this.calculateWalkroute(shoppinglist);

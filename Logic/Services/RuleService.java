@@ -10,7 +10,7 @@ import Logic.Rules.BasicRule;
 
 import java.util.ArrayList;
 
-public class CreateWalkRouteService {
+public class RuleService {
     public Boolean applyRules(ArrayList<Rule> activeRules, Shoppinglist shoppinglist) {
         Boolean success = true;
         for (Rule rule : activeRules) {
