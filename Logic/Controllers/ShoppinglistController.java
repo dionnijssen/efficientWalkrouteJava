@@ -34,7 +34,7 @@ public class ShoppinglistController implements ShoppinglistControllerInterface {
         return this.shoppinglistRepo.get();
     }
 
-    public Boolean store(Shoppinglist shoppinglist) {
+    private Boolean store(Shoppinglist shoppinglist) {
         if (this.shoppinglistRepo.store(shoppinglist) != null) {
             return true;
         } else {
