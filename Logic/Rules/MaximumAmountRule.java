@@ -1,33 +1,26 @@
 package Logic.Rules;
 
+import Logic.Dtos.src.RuleInformtionDto;
+import Logic.Interfaces.Logic.Controllers.BasicRuleInterface;
 import Logic.Models.Article;
 import Logic.Models.Orderrule;
 
-public class MaximumAmountRule extends BasicRule {
+public class MaximumAmountRule implements BasicRuleInterface {
     private int maxAmount;
 
-    @Override
-    public void apply(Orderrule orderrule, Object... args) {
+    public RuleInformtionDto apply(Orderrule orderrule, Object... args) {
+        RuleInformtionDto ruleInformation = new RuleInformtionDto();
         this.maxAmount = (Integer) args[0];
 
         if (orderrule.getAmount() <= this.maxAmount) {
-            this.applied = false;
-            this.reason = "Success";
-
-            return;
+            ruleInformation.setSucces();
+            return ruleInformation;
         }
 
-        this.applied = true;
-
         Article article = orderrule.getArticle();
-        this.setReason(article);
-    }
+        String reason = "Max amount of " + article.getName() + " is " + this.maxAmount;
+        ruleInformation.setFailure(reason);
 
-    public boolean hasBeenApplied() {
-        return this.applied;
-    }
-
-    public void setReason(Article article) {
-        this.reason = "Max amount of " + article.getName() + " is " + this.maxAmount;
+        return ruleInformation;
     }
 }

@@ -1,12 +1,13 @@
 package Logic.Services;
 
 import DataLayer.ArticleRepository;
+import Logic.Dtos.src.RuleInformtionDto;
 import Logic.Helpers.RuleHelper;
+import Logic.Interfaces.Logic.Controllers.BasicRuleInterface;
 import Logic.Models.Order;
 import Logic.Models.Orderrule;
 import Logic.Models.Rule;
 import Logic.Models.Shoppinglist;
-import Logic.Rules.BasicRule;
 
 import java.util.ArrayList;
 
@@ -14,12 +15,12 @@ public class RuleService {
     public Boolean applyRules(ArrayList<Rule> activeRules, Shoppinglist shoppinglist) {
         Boolean success = true;
         for (Rule rule : activeRules) {
-            BasicRule basicRule = RuleHelper.getCorrectRule(rule.getType());
+            BasicRuleInterface basicRule = RuleHelper.getCorrectRule(rule.getType());
 
-            basicRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()), rule.getAmount());
+            RuleInformtionDto ruleInformtion = basicRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()), rule.getAmount());
 
-            if (basicRule.hasBeenApplied()) {
-                System.out.println(basicRule.getReason());
+            if (ruleInformtion.isSuccess() == false) {
+                System.out.println(ruleInformtion.getReason());
                 success = false;
             }
         }

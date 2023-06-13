@@ -1,11 +1,11 @@
 package Logic.Helpers;
 
-import Logic.Rules.BasicRule;
+import Logic.Interfaces.Logic.Controllers.BasicRuleInterface;
 import Logic.Rules.MaximumAmountRule;
 import Logic.Rules.MinimumAmountRule;
 
 public class RuleHelper {
-    public static BasicRule getCorrectRule(String type) {
+    public static BasicRuleInterface getCorrectRule(String type) {
         switch (type) {
             case "max":
                 return new MaximumAmountRule();
