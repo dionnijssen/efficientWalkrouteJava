@@ -62,6 +62,6 @@ public class ShoppinglistController implements ShoppinglistControllerInterface {
         }
         int id = (shoppinglists.size() + 1);
 
-        return new Shoppinglist(id, today, null, null);
+        return new Shoppinglist(id, today);
     }
 }

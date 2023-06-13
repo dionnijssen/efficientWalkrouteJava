@@ -9,11 +9,9 @@ public class Shoppinglist {
     private ArrayList<Order> orders;
     private int walkRouteId;
 
-    public Shoppinglist(int id, LocalDate date, ArrayList<Order> orders, WalkRoute walkRoute) {
+    public Shoppinglist(int id, LocalDate date) {
         this.id = id;
         this.date = date;
-        this.orders = orders;
-        this.walkRouteId = walkRouteId;
     }
 
     public int getId() {

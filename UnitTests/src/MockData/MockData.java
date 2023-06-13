@@ -15,6 +15,10 @@ public class MockData {
         ArrayList<Order> orders = new ArrayList<Order>();
         orders.add(order);
 
-        return new Shoppinglist(1, LocalDate.now(), orders, null);
+        Shoppinglist shoppinglist = new Shoppinglist(1, LocalDate.now());
+
+        shoppinglist.addOrder(order);
+
+        return shoppinglist;
     }
 }
