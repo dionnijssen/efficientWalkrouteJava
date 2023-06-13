@@ -1,13 +1,13 @@
 package Logic;
 
-import Logic.Services.CreateWalkRouteService;
+import Logic.Services.RuleService;
 
 public class ServiceFactory {
-    private CreateWalkRouteService walkRouteService;
+    private RuleService walkRouteService;
 
-    public CreateWalkRouteService getCreateWalkRouteService() {
+    public RuleService getCreateWalkRouteService() {
         if (null == this.walkRouteService) {
-            this.walkRouteService = new CreateWalkRouteService();
+            this.walkRouteService = new RuleService();
         }
 
         return this.walkRouteService;

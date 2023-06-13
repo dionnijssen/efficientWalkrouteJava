@@ -11,5 +11,5 @@ public interface ShoppinglistControllerInterface {
 
     ArrayList<Shoppinglist> get();
 
-    Boolean store(Shoppinglist shoppinglist);
+    Boolean update(Shoppinglist $shoppingListId);
 }
