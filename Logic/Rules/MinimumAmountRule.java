@@ -6,19 +6,17 @@ import Logic.Models.Article;
 import Logic.Models.Orderrule;
 
 public class MinimumAmountRule implements BasicRuleInterface {
-    private int minimumAmount;
-
     public RuleInformtionDto apply(Orderrule orderrule, Object... args) {
         RuleInformtionDto ruleInformation = new RuleInformtionDto();
-        this.minimumAmount = (Integer) args[0];
+        Integer minimumAmount = (Integer) args[0];
 
-        if (orderrule.getAmount() >= this.minimumAmount) {
+        if (orderrule.getAmount() >= minimumAmount) {
             ruleInformation.setSucces();
             return ruleInformation;
         }
 
         Article article = orderrule.getArticle();
-        String reason = "Minimum amount of " + article.getName() + " has to be " + this.minimumAmount;
+        String reason = "Minimum amount of " + article.getName() + " has to be " + minimumAmount;
         ruleInformation.setFailure(reason);
 
         return ruleInformation;
