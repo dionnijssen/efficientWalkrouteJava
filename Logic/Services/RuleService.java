@@ -19,7 +19,7 @@ public class RuleService {
 
             RuleInformtionDto ruleInformtion = basicRule.apply(this.getOrderLine(shoppinglist, rule.getArticleId()), rule.getAmount());
 
-            if (ruleInformtion.isSuccess() == false) {
+            if (!ruleInformtion.isSuccess()) {
                 System.out.println(ruleInformtion.getReason());
                 success = false;
             }
@@ -44,6 +44,7 @@ public class RuleService {
             amount += orderrule.getAmount();
         }
 
+        // TODO: new ArticleRepository(), only works because it is preset.
         return new Orderrule(new ArticleRepository().show(articleId), amount);
     }
 }
