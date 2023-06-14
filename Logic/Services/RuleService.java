@@ -44,7 +44,6 @@ public class RuleService {
             amount += orderrule.getAmount();
         }
 
-        // TODO: new ArticleRepository(), only works because it is preset.
         return new Orderrule(new ArticleRepository().show(articleId), amount);
     }
 }
