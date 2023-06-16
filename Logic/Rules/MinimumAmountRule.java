@@ -11,7 +11,7 @@ public class MinimumAmountRule implements BasicRuleInterface {
         Integer minimumAmount = (Integer) args[0];
 
         if (orderrule.getAmount() >= minimumAmount) {
-            ruleInformation.setSucces();
+            ruleInformation.setSuccess();
             return ruleInformation;
         }
 
