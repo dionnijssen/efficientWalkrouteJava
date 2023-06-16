@@ -1,7 +1,7 @@
 import Logic.Models.Rule;
 import Logic.Models.Shoppinglist;
 import Logic.Services.RuleService;
-import MockData.MockData;
+import MockData.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,10 +13,10 @@ public class Algorithm {
     @Test
     public void createWalkrouteFails() {
         // Arrange
-        RuleService ruleService = new RuleService();
+        RuleService ruleService = new RuleService(new RuleHelperMock());
         Shoppinglist shoppinglist = MockData.getShoppinglist();
         ArrayList<Rule> rules = new ArrayList<Rule>();
-        rules.add(new Rule(1, "min", 1, 50));
+        rules.add(new Rule(1, "fail", 1, 50));
 
         // Act
         boolean isSuccess = ruleService.applyRules(rules, shoppinglist);
@@ -28,10 +28,10 @@ public class Algorithm {
     @Test
     public void createWalkrouteSucceeds() {
         // Arrange
-        RuleService ruleService = new RuleService();
+        RuleService ruleService = new RuleService(new RuleHelperMock());
         Shoppinglist shoppinglist = MockData.getShoppinglist();
         ArrayList<Rule> rules = new ArrayList<Rule>();
-        rules.add(new Rule(1, "min", 1, 5));
+        rules.add(new Rule(1, "succeed", 1, 5));
 
         // Act
         boolean isSuccess = ruleService.applyRules(rules, shoppinglist);
