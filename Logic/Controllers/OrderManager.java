@@ -25,8 +25,6 @@ public class OrderManager implements OrderManagerInterface {
         Shoppinglist updatedShoppingList = this.shoppinglistRepository.update(shoppinglist);
 
         if (updatedShoppingList != null) {
-            System.out.println("Order added to shoppinglist");
-
             return updatedShoppingList;
         } else {
             System.out.println("Something went wrong, please try again");
