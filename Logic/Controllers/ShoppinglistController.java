@@ -55,11 +55,6 @@ public class ShoppinglistController implements ShoppinglistControllerInterface {
 
         LocalDate today = LocalDate.now();
 
-        for (int i = 0; i < shoppinglists.size(); i++) {
-            if ((shoppinglists.get(i)).getDate() == today) {
-                return null;
-            }
-        }
         int id = (shoppinglists.size() + 1);
 
         return new Shoppinglist(id, today);
