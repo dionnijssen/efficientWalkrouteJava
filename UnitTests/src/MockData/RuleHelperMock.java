@@ -1,17 +1,15 @@
-package Logic.Helpers;
+package MockData;
 
 import Logic.Interfaces.Logic.Controllers.BasicRuleInterface;
 import Logic.Interfaces.Logic.Controllers.RuleHelperInterface;
-import Logic.Rules.MaximumAmountRule;
-import Logic.Rules.MinimumAmountRule;
 
-public class RuleHelper implements RuleHelperInterface {
+public class RuleHelperMock implements RuleHelperInterface {
     public BasicRuleInterface getCorrectRule(String type) {
         switch (type) {
-            case "max":
-                return new MaximumAmountRule();
-            case "min":
-                return new MinimumAmountRule();
+            case "succeed":
+                return new MockRuleSucceed();
+            case "fail":
+                return new MockRuleFail();
             default:
                 throw new IllegalArgumentException("Invalid rule type");
         }

@@ -4,7 +4,7 @@ public class RuleInformtionDto {
     private Boolean success;
     private String reason;
 
-    public void setSucces () {
+    public void setSuccess() {
         this.success = true;
         this.reason = "Success";
     }

@@ -21,4 +21,11 @@ public class MockData {
 
         return shoppinglist;
     }
+
+    public static Orderrule getOrderrule() {
+        Article article = new Article(1, "Test", "Test description");
+        Orderrule orderrule = new Orderrule(article, 5);
+
+        return orderrule;
+    }
 }

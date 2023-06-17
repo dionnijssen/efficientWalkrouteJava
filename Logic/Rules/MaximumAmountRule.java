@@ -11,7 +11,7 @@ public class MaximumAmountRule implements BasicRuleInterface {
         Integer maxAmount = (Integer) args[0];
 
         if (orderrule.getAmount() <= maxAmount) {
-            ruleInformation.setSucces();
+            ruleInformation.setSuccess();
             return ruleInformation;
         }
 

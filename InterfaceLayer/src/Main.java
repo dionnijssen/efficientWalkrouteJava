@@ -14,11 +14,6 @@ public class Main {
     private ServiceFactory serviceFactory;
     private UiFactory uiFactory;
 
-    /*
-        - Voeg test toe van (meerdere) Orders toevoegen aan shoppingList
-        - Voeg test toe van Algoritme
-     */
-
     public static void main(String[] args) throws IOException, ParseException {
         Main main = new Main();
         main.main();
