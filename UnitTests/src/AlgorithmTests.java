@@ -38,4 +38,18 @@ public class AlgorithmTests {
         // Assert
         assertEquals(true, isSuccess);
     }
+
+    @Test
+    public void createWalkrouteWithoutActiveRules() {
+        // Arrange
+        RuleService ruleService = new RuleService(new RuleHelperMock());
+        Shoppinglist shoppinglist = MockData.getShoppinglist();
+        ArrayList<Rule> rules = new ArrayList<Rule>();
+
+        // Act
+        boolean isSuccess = ruleService.applyRules(rules, shoppinglist);
+
+        // Assert
+        assertEquals(true, isSuccess);
+    }
 }
